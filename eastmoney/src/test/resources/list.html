@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--published at 2016-12-13 19:03:14-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8">
+    <title>股吧_东方财富网旗下股票社区_东方财富网股吧</title>
+    <meta name="keywords" content="股吧,股票,社区,证券,在线交流,实时行情,东方财富网股吧,股票论坛,股民交流中心" />
+    <meta name="description" content="股吧--东方财富网旗下股票主题社区，实时行情评论和个股交流让你感受到证券经济的力量。" />
+    <meta http-equiv="refresh" content="1800" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta name="baidu-site-verification" content="QaU1nSuNwq" />
+    <meta name="sogou_site_verification" content="AEM1KkBGXF" />
+    <meta property="wb:webmaster" content="9c8b01f17ee48650" />
+    <link rel="stylesheet" href="//gbfek.dfcfw.com/gubav5/css/base_module_c_0fff43dbf7.css" />
+    <link rel="stylesheet" href="//gbfek.dfcfw.com/gubav5/css/index_c1db1030e4.css" />
+    <style>
+        .baokuang {
+            height: 800px;
+            width: 100%;
+            background: url(http://gbfek.dfcfw.com//gubav5/images/natianal/20160930_bg_repeat.jpg) repeat-x 0 0 #FFF;
+        }
+
+            .baokuang .bkImg, .baokuang .bkImg .cImgDiv {
+                background: url(http://gbfek.dfcfw.com//gubav5/images/natianal/20160930_bg_main.jpg?r=2) no-repeat center top;
+            }
+
+            .baokuang .bkImg {
+                width: 100%;
+                height: 800px;
+                margin: 0 auto;
+            }
+
+                .baokuang .bkImg .cImgDiv {
+                    width: 950px;
+                    height: 40px;
+                    margin: 0 auto;
+                    position: relative;
+                }
+
+                .baokuang .bkImg .clickMap {
+                    display: block;
+                    height: 40px;
+                    width: 100%;
+                    text-indent: -100em;
+                    overflow: hidden;
+                }
+
+                .baokuang .bkImg .close {
+                    background: url(http://gbfek.dfcfw.com//gubav5/images/natianal/20160930_close.gif) no-repeat;
+                    width: 44px;
+                    height: 18px;
+                    cursor: pointer;
+                    position: absolute;
+                    right: 0px;
+                    bottom: 0;
+                    text-indent: -100em;
+                    overflow: hidden;
+                }
+
+        .pageCont {
+            background: #FFF;
+            height: 0;
+            overflo: hidden;
+            margin-top: -760px;
+        }
+
+        .ad {
+            line-height: 25px;
+            text-align: right;
+        }
+
+        .red > a, .red > a:link, .red > a:visited {
+            color: red !important;
+            _color: red !important;
+        }
+
+        @media screen and (max-device-width: 320px) and (max-device-width: 480px) {
+            body {
+                -webkit-text-size-adjust: none;
+            }
+        }
+
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+            body {
+                -webkit-text-size-adjust: none;
+            }
+        }
+
+        /*.wrap { background:#FFF;}*/
+    </style>
+    <base target="_blank" />
+    <script>
+        var pagetype = "";
+        var gubapagetype = "index";
+    </script>
+</head>
+<body class="hlbody">
+    <div id="header">
+	<!-- 微信分享img -->
+	<img id="weixin-share" src="http://cmsjs.eastmoney.com/common/weixin-share.png" style="position: absolute; width: 0; height: 0; left: -1000px;z-index: -1;">
+	<div class="gbbody" id="headergbbody">
+		<ul id="topnav">
+			<li><a href="http://www.eastmoney.com/">东方财富网</a></li>
+			<li><a href="http://fund.eastmoney.com/">天天基金网</a></li>
+			<li><a href="http://guba.eastmoney.com/">股吧首页</a></li>
+			<li><a href="//guba.eastmoney.com/jj.html">基金吧首页</a></li>
+			<li><a href="http://iguba.eastmoney.com/">我的股吧</a></li>
+			<!-- <li><a href="remenba.aspx?type=1">热门吧</a></li> -->
+			<li><a href="/ft_list.aspx">股吧访谈</a></li>
+			<!-- <li><a href="http://quote.eastmoney.com/favor/default.html">自选股行情</a></li> -->
+			<li><a href="http://guba.eastmoney.com/qa/qa_list.aspx" target="_blank">问董秘</a></li>
+			<li><a href="http://acttg.eastmoney.com/pub/web_gubaapp_dcsy_top1_06_01_01_1" target="_blank">手机版</a></li>
+			<!-- <li><a href="remenba.aspx?type=2">热门主题吧</a></li> -->
+		</ul>
+		<form method="GET" action="/search.aspx" id="topnavsearch">
+			<input type="text" name="t" id="topnavskey" placeholder="搜索 股票/讨论/用户" autocomplete="off" /><input type="submit" value=" " id="topnavsubmit" title="点击开始搜索" />
+			<div id="topnavsearchre">
+				<ul></ul>
+			</div>
+		</form>
+		<ul id="topnavper">
+			<li class="topbarhaslogin" id="topbarloginuserdiv" style="display:none;"><strong><span class="headerusername"></span></strong></li>
+			<li class="topbarhaslogin" style="display: none;"><span class="tnavsel">消息<em class="tnavselic"></em>
+				<div class="topnavdown">
+					<div class="topnavdownt">消息<em class="tnavselid"></em></div>
+					<ul class="topnavdownul topnavdownulmsgul">
+						<li><a href="http://iguba.eastmoney.com/replyme">&nbsp;&nbsp;查看新回复<em></em></a></li>
+						<li><a href="http://iguba.eastmoney.com/atmereply">&nbsp;&nbsp;查看新@我的<em></em></a></li>
+						<li><a href="http://iguba.eastmoney.com/myfans">&nbsp;&nbsp;查看新粉丝<em></em></a></li>
+						<li><a href="javascript:;" target="_self" class="alarm" data-type="1">&nbsp;&nbsp;股价提醒<em></em></a></li>
+						<li><a href="javascript:;" target="_self" class="alarm" data-type="2">&nbsp;&nbsp;公告提醒<em></em></a></li>
+						<li><a href="javascript:;" target="_self" class="alarm" data-type="3">&nbsp;&nbsp;研报提醒<em></em></a></li>
+						<li class="nobg"><a href="javascript:;" class="alarm" data-type="4" target="_self">&nbsp;&nbsp;数据提醒<em></em></a></li>
+					</ul>
+					</div>
+				</span>
+			</li>
+			<li class="topbarhaslogin" style="display:none;"><span class="tnavsel">设置<em class="tnavselic"></em>
+				<div class="topnavdown">
+					<div class="topnavdownt">设置<em class="tnavselid"></em></div>
+					<ul class="topnavdownul">
+						<li><a href="https://passport.eastmoney.com/pub/basicinfo" target="_blank">个人设置</a></li>
+						<li><a href="http://passport.eastmoney.com/UpdatePass.EmUser" target="_blank">修改密码</a></li>
+						<li><a href="http://iguba.eastmoney.com/setting/privacy" target="_blank">隐私设置</a></li>
+						<li><a href="http://iguba.eastmoney.com/setting/message" target="_blank">消息设置</a></li>
+						<li><a href="http://v.eastmoney.com/" target="_blank">V认证</a></li>
+						<li class="nobg"><a id="topbarlogoutlink" href="javascript:;" target="_self">退出</a></li>
+					</ul>
+					</div>
+				</span>
+			</li>
+			<li class="topbarlogin tnavselloginfix">您好，欢迎来股吧！  </li>
+			<li class="topbarlogin tnavsellogin"><a id="header_btn_login" href="javascript:void(0);"><strong>登录/注册</strong></a>
+			<script>
+				var url = "https://passport.eastmoney.com/pub/login?backurl="+encodeURIComponent(window.location.href);
+				document.getElementById("header_btn_login").href=url;
+				// function toPassportLogin()
+				// {
+				// 	var url = "https://passport.eastmoney.com/pub/login?backurl="+window.location.href;
+				// 	window.open(url);
+				// }
+			</script>
+<!-- 				<div id="headerlogin" class="topnavdown clearfix">
+					<div id="fast">
+						<div class="t">使用合作网站帐号登录</div>
+						<div class="b">
+							<a href="javascript:;" target="_self" class="headerlogintlink qqlogin"><em class="qqicon"></em>腾讯QQ帐号登录</a>
+							<a href="javascript:;" target="_self" class="headerlogintlink sinalogin"><em class="sinaicon"></em>新浪微博帐号登录</a>
+						</div>
+						
+					</div>
+					<div id="hlogin">
+						<div id="hlclose" onclick="$('#headerlogin').hide();">X</div>
+						<div class="timg"><a href="http://passport.eastmoney.com/PhoneReg.EmUser">5秒注册</a></div>
+						<div class="t">已有自选股、股吧、博客帐号，可直接登录</div>
+						<div id="hloginerror">&nbsp;</div>
+						<form method="post" action="" id="headnaviloginform" target="_self">
+							<div class="i"><label>登录名：<input type="text" class="hinput" placeholder="手机/邮箱名/用户名" id="husername" autocomplete="off" /></label></div>
+							<div class="i"><label>密　码：<input type="password" class="hinput" placeholder="请输入登录密码" id="hpassword" /></label></div>
+							<div class="i" id="hlvcodediv"><label>验证码：<input type="text" class="hinput3" placeholder="请输入验证码" id="hlvcode" /></label> <img src="" id="hlvcodeimg" title="点击更换验证码" /></div>
+							<div class="i">　　　　<input type="submit" value="登录" class="hinput2" id="hlformsubmit" /> &nbsp;　 <a href="http://passport.eastmoney.com/FindPwd.EmUser" class="hlink">忘记密码？</a></div>
+						</form>
+					</div>
+				</div>	 -->		
+			</li>
+		</ul>
+	</div>
+</div>
+    <!-- <div class="wrap"><iframe width="980" height="60" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://same.eastmoney.com/s?z=eastmoney&c=992&op=1" ></iframe><div class="dh10"></div></div> -->
+
+    <div id="headerban" class="gbbody">
+	<div id="headerbanlogo"><a href="/"><img src="http://guba.eastmoney.com/images/gubahlogo.png" width="252" height="52" alt="股吧" /></a></div>
+	<div id="gbhsearch">
+		<form id="gbhscform">
+			<ul id="gbhsctab">
+				<li class="on">按吧名搜索</li>
+				<li>按内容搜索</li>
+				<li>按作者搜索</li>
+			</ul>
+			<input type="text" name="" id="gbhsckey" /><input type="submit" value="股吧搜索" id="gbhscsbm" />
+		</form>
+	</div>
+	<div id="gbhri">
+		热门：<a href="/list,601116.html">三江购物吧</a> <a href="/list,000651.html">格力电器吧</a> <a href="/list,600773.html">西藏城投吧</a> 
+	</div>
+</div>
+
+
+
+
+    <div class="wrap mt6">
+        <div class="history">
+            <span class="tit">您最近访问的吧</span><span id="baHistory"></span>
+        </div>
+    </div>
+
+    <div class="gbbody"><div class="gbbox2 gbhbl"><div class="gbboxt"><a href="remenba.aspx?type=2">热门主题吧</a></div><div class="gbboxtm"><a href="remenba.aspx?type=2">更多</a></div><div class="gbboxb"><div class="zhutibarlist"><ul><li><a href="http://guba.eastmoney.com/list,cjpl.html" >财经评论吧</a></li><li><a href="http://guba.eastmoney.com/list,gssz.html" >股市实战吧</a></li><li><a href="http://guba.eastmoney.com/list,szzs.html" >上证指数吧</a></li><li><a href="http://guba.eastmoney.com/list,gmxx.html" >股民学校吧</a></li><li><a href="http://guba.eastmoney.com/list,hxnc.html" >核心内参吧</a></li><li><a href="http://guba.eastmoney.com/list,gzqh.html" >股指期货吧</a></li><li><a href="http://guba.eastmoney.com/list,xg.html" >新股吧</a></li><li><a href="http://guba.eastmoney.com/list,fshfeag.html" >沪银吧</a></li><li><a href="http://guba.eastmoney.com/list,cyb.html" >创业板指吧</a></li><li><a href="http://guba.eastmoney.com/list,meigu.html" >美股吧</a></li><li><a href="http://guba.eastmoney.com/list,tzzhtl.html" >投资组合吧</a></li><li><a href="http://guba.eastmoney.com/list,jjft.html" >基金夜8点吧</a></li><li><a href="http://guba.eastmoney.com/list,dfx.html" >低风险吧</a></li><li><a href="http://guba.eastmoney.com/list,fdcej.html" >焦炭吧</a></li><li><a href="http://guba.eastmoney.com/list,hkhsi.html" >恒生指数吧</a></li><li><a href="http://guba.eastmoney.com/list,qqgs.html" >全球股市吧</a></li><li><a href="http://guba.eastmoney.com/list,huangjin.html" >黄金吧</a></li><li><a href="http://guba.eastmoney.com/list,sb.html" >三板吧</a></li><li><a href="http://guba.eastmoney.com/list,yuanyou.html" >原油吧</a></li><li><a href="http://guba.eastmoney.com/list,meiyuan.html" >美元吧</a></li></ul><div class="clear"></div></div></div></div><div class="gbbox2 gbbody gbhbr"><div class="gbboxt"><a href="remenba.aspx?type=1">热门个股吧</a></div><div class="gbboxtm"><a href="remenba.aspx?type=1">更多</a></div><div class="gbboxb"><div class="zhutibarlist"><ul><li><a href="list,601116.html">三江购物吧</a></li><li><a href="list,000651.html">格力电器吧</a></li><li><a href="list,601668.html">中国建筑吧</a></li><li><a href="list,600679.html">上海凤凰吧</a></li><li><a href="list,600050.html">中国联通吧</a></li><li><a href="list,600069.html">银鸽投资吧</a></li><li><a href="list,000002.html">万科A吧</a></li><li><a href="list,000672.html">上峰水泥吧</a></li><li><a href="list,300104.html">乐视网吧</a></li><li><a href="list,600084.html">中葡股份吧</a></li><li><a href="list,600556.html">ST慧球吧</a></li><li><a href="list,002251.html">步步高吧</a></li><li><a href="list,000839.html">中信国安吧</a></li><li><a href="list,600466.html">蓝光发展吧</a></li><li><a href="list,600868.html">梅雁吉祥吧</a></li><li><a href="list,000935.html">四川双马吧</a></li><li><a href="list,002408.html">齐翔腾达吧</a></li><li><a href="list,601989.html">中国重工吧</a></li><li><a href="list,000511.html">*ST烯碳吧</a></li><li><a href="list,000413.html">东旭光电吧</a></li></ul><div class="clear"></div></div></div></div></div>
+
+    <div class="wrap">
+        <div class="dh10"></div>
+        <div class="thnewstocklist">
+            <a href="http://guba.eastmoney.com/list,xg.html">
+                <div class="thnewstocklistt">新股吧</div>
+            </a>
+            <ul><li><a href="http://guba.eastmoney.com/list,600996.html" >贵广网络吧</a></li><li><a href="http://guba.eastmoney.com/list,002830.html" >名雕股份吧</a></li><li><a href="http://guba.eastmoney.com/list,603058.html" >永吉股份吧</a></li><li><a href="http://guba.eastmoney.com/list,603708.html" >家 家 悦吧</a></li><li><a href="http://guba.eastmoney.com/list,603416.html" >信捷电气吧</a></li><li><a href="http://guba.eastmoney.com/list,300581.html" >晨曦航空吧</a></li><li><a href="http://guba.eastmoney.com/list,603990.html" >麦迪科技吧</a></li><li><a href="http://guba.eastmoney.com/list,002826.html" >易明医药吧</a></li><li><a href="http://guba.eastmoney.com/list,300575.html" >中旗股份吧</a></li><li><a href="http://guba.eastmoney.com/list,603036.html" >如通股份吧</a></li><li><a href="http://guba.eastmoney.com/list,002829.html" >星网宇达吧</a></li><li><a href="http://guba.eastmoney.com/list,300571.html" >平治信息吧</a></li><li><a href="http://guba.eastmoney.com/list,300579.html" >数字认证吧</a></li><li><a href="http://guba.eastmoney.com/list,603577.html" >汇 金 通吧</a></li><li><a href="http://guba.eastmoney.com/list,603928.html" >兴业股份吧</a></li><li><a href="http://guba.eastmoney.com/list,002827.html" >高争民爆吧</a></li><li><a href="http://guba.eastmoney.com/list,300577.html" >开润股份吧</a></li><li><a href="http://guba.eastmoney.com/list,300576.html" >容大感光吧</a></li><li><a href="http://guba.eastmoney.com/list,603878.html" >武进不锈吧</a></li><li><a href="http://guba.eastmoney.com/list,002828.html" >贝肯能源吧</a></li></ul>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="dh10"></div>
+        <div class="redian">
+            <div class="item">
+                <iframe width="172" height="70" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://cmsjs.eastmoney.com/same/994.html"></iframe>
+            </div>
+            <div class="item">
+                <iframe width="172" height="70" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://cmsjs.eastmoney.com/same/995.html"></iframe>
+            </div>
+            <div class="item">
+                <iframe width="172" height="70" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://cmsjs.eastmoney.com/same/996.html"></iframe>
+            </div>
+            <div class="item">
+                <iframe width="172" height="70" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://cmsjs.eastmoney.com/same/997.html"></iframe>
+            </div>
+            <div class="item">
+                <iframe width="172" height="70" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://cmsjs.eastmoney.com/same/998.html"></iframe>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="dh10"></div>
+    <div class="wrap">
+        <div class="titCont t3">
+            <div id="pagenav">
+                <ul>
+                    <li><a href="default_1.html" target="_self">全部</a></li>
+                    <li><a href="default,1,f_1.html" target="_self"><em class="iconnews"></em>新闻</a></li>
+                    <li><a href="default,3,f_1.html" target="_self"><em class="icongg"></em>公告</a></li>
+                    <li><a href="http://data.eastmoney.com/report/" target="_blank"><em class="iconrep"></em>研报</a></li>
+                    <li><a href="http://guba.eastmoney.com/qa/qa_list.aspx" target="_blank"><em class="iconqa"></em>问董秘</a></li>
+                    <li>
+                        <iframe width="80" height="27" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://cmsjs.eastmoney.com/same/1024.html"></iframe>
+                    </li>
+                </ul>
+                <div class="ad">
+                    <span class="red"><a href="http://js5.eastmoney.com/tg.aspx?ID=2756" >点击领取100元红包</a></span></li></ul>
+                </div>
+            </div>
+            <div class="cont bg gbbb1">
+                <div class="balist">
+                    <div class="header">
+                        <span class="clk">阅读</span>
+                        <span class="rev">评论</span>
+                        <span class="sub">标题</span>
+                        <span class="aut">作者</span>
+                        <span class="date">发表日期</span>
+                        <span class="last">最后更新</span>
+                    </div>
+                    <ul class="newlist">
+                        
+                        <li class="first">
+                            <cite>18</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,300066.html" class="balink">三川智慧吧</a>]  <a href="/news,300066,578898197.html" title="70多亿市值年赚一个亿的股票，不要太多？宁波联合，全柴动力。又赚钱市值又小！"  class="note">70多亿市值年赚一个亿的股票，不要太多？宁波联合，全柴动力。又赚钱市值又小！</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/6393114132978220"  data-popper="6393114132978220" data-poptype="1">投机者媾</a></cite>
+                            <cite class="date">12-13 19:00</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>2338</cite>
+                            <cite>4</cite>
+                            <span class="sub">[<a href="/list,300539.html" class="balink">横河模具吧</a>]  <a href="/news,300539,578385988.html" title="好疼呀！早上追的！要我怎么办？还能活吗？"  class="note">好疼呀！早上追的！要我怎么办？还能活吗？</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/2419094292560048"  data-popper="2419094292560048" data-poptype="1">小资紫紫</a></cite>
+                            <cite class="date">12-12 16:02</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>5750</cite>
+                            <cite>14</cite>
+                            <span class="sub">[<a href="/list,002092.html" class="balink">中泰化学吧</a>]  <a href="/news,002092,577033453.html" title="演的更真的“出货”一样，刻意制造恐慌！"  class="note">演的更真的“出货”一样，刻意制造恐慌！</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5262094734380212"  data-popper="5262094734380212" data-poptype="1">股友FsnwBd</a></cite>
+                            <cite class="date">12-08 12:16</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>271</cite>
+                            <cite>2</cite>
+                            <span class="sub">[<a href="/list,002796.html" class="balink">世嘉科技吧</a>]  <a href="/news,002796,578724136.html" title="昨天一割今天就涨！有鬼吗？"  class="note">昨天一割今天就涨！有鬼吗？</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/2419094292560048"  data-popper="2419094292560048" data-poptype="1">小资紫紫</a></cite>
+                            <cite class="date">12-13 11:57</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>466</cite>
+                            <cite>2</cite>
+                            <span class="sub">[<a href="/list,300553.html" class="balink">集智股份吧</a>]  <a href="/news,300553,578822648.html" title="看了几天，这股似乎都是散户行情，大家要团结起来"  class="note">看了几天，这股似乎都是散户行情，大家要团结起来</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/2703094437251290"  data-popper="2703094437251290" data-poptype="1">風中白雲</a></cite>
+                            <cite class="date">12-13 15:29</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>15</cite>
+                            <cite>2</cite>
+                            <span class="sub">[<a href="/list,603878.html" class="balink">武进不锈吧</a>]  <a href="/news,603878,578894568.html" title="护板人人有责，顶贴人人尽力"  class="note">护板人人有责，顶贴人人尽力</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/3325094506173940"  data-popper="3325094506173940" data-poptype="1">寒风在线</a></cite>
+                            <cite class="date">12-13 18:49</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>20519</cite>
+                            <cite>9</cite>
+                            <span class="sub">[<a href="/list,000012.html" class="balink">南玻A吧</a>]  <a href="/news,000012,578577159.html" title="南玻A：宝能系的又一枚棋子"  class="note">南玻A：宝能系的又一枚棋子</a> </span>
+                            <cite class="aut"><a href="http://guba.eastmoney.com/list,000012.html" data-popstock="000012" data-poptype="2">南玻A资讯</a></cite>
+                            <cite class="date">12-13 03:41</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>7173</cite>
+                            <cite>15</cite>
+                            <span class="sub">[<a href="/list,002288.html" class="balink">超华科技吧</a>]  <a href="/news,002288,578812571.html" title="高手预测下明天吧"  class="note">高手预测下明天吧</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/7098144654769058"  data-popper="7098144654769058" data-poptype="1">姐狠美</a></cite>
+                            <cite class="date">12-13 15:06</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>933</cite>
+                            <cite>3</cite>
+                            <span class="sub">[<a href="/list,603987.html" class="balink">康德莱吧</a>]  <a href="/news,603987,578834851.html" title="从未见过如此厚颜无耻之庄"  class="note">从未见过如此厚颜无耻之庄</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/4997094503583612"  data-popper="4997094503583612" data-poptype="1">徐翔招安了吧</a></cite>
+                            <cite class="date">12-13 16:01</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>11937</cite>
+                            <cite>201</cite>
+                            <span class="sub">[<a href="/list,600556.html" class="balink">ST慧球吧</a>]  <a href="/news,600556,576749988.html" title="慧球在这么下去迟早完蛋，支持瑞莱，来个明白人把公司好好管管"  class="note">慧球在这么下去迟早完蛋，支持瑞莱，来个明白人把公司好好管管</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/4369113317150714"  data-popper="4369113317150714" data-poptype="1">天涯咫间</a></cite>
+                            <cite class="date">12-07 17:19</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>351</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,601333.html" class="balink">广深铁路吧</a>]  <a href="/news,601333,578800390.html" title="春运了铁路要忙了"  class="note">春运了铁路要忙了</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/3650094377044246"  data-popper="3650094377044246" data-poptype="1">三九城</a></cite>
+                            <cite class="date">12-13 14:46</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>1287</cite>
+                            <cite>2</cite>
+                            <span class="sub">[<a href="/list,600528.html" class="balink">中铁二局吧</a>]  <a href="/news,600528,578873110.html" title="强烈抗议！公积金，是众多小散血汗钱积累的，公司不但不分给小散，竟然把公积15亿元转增注册资本？  这是对小散进行抢劫"  class="note">强烈抗议！公积金，是众多小散血汗钱积累的，公司不但不分给小散，竟然把公积15亿元转增注册资本？  这是对小散进行抢劫</a> </span>
+                            <cite class="aut"><span class="gray">四川成都网友</span></cite>
+                            <cite class="date">12-13 17:48</cite>
+                            <cite class="last">12-13 19:03</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>5320</cite>
+                            <cite>25</cite>
+                            <span class="sub">[<a href="/list,000670.html" class="balink">*ST盈方吧</a>]  <a href="/news,000670,578721473.html" title="老陈兄弟，陈大爷，我求你今晚无论如何得给兄弟们交个底，是龙是虫你老总得爬出来，千"  class="note">老陈兄弟，陈大爷，我求你今晚无论如何得给兄弟们交个底，是龙是虫你老总得爬出来，千</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/8869094764057904"  data-popper="8869094764057904" data-poptype="1">五稀钉子户</a></cite>
+                            <cite class="date">12-13 11:48</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>172</cite>
+                            <cite>2</cite>
+                            <span class="sub">[<a href="/list,300127.html" class="balink">银河磁体吧</a>]  <a href="/news,300127,578788185.html" title="恶庄，家里死人了"  class="note">恶庄，家里死人了</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5426094401407200"  data-popper="5426094401407200" data-poptype="1">小公仔116</a></cite>
+                            <cite class="date">12-13 14:27</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>15</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,dcblog.html" class="balink">博客吧</a>]  <a href="/news,dcblog,578897389.html" title="济民制药，"  class="note">济民制药，</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/2430112867261742"  data-popper="2430112867261742" data-poptype="1">十五始终没叉股</a></cite>
+                            <cite class="date">12-13 18:58</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>4522</cite>
+                            <cite>16</cite>
+                            <span class="sub">[<a href="/list,000950.html" class="balink">*ST建峰吧</a>]  <a href="/news,000950,578721229.html" title="关于ST建峰的未来走势与停牌时间、复牌后涨幅预测等，仅仅娱乐"  class="note">关于ST建峰的未来走势与停牌时间、复牌后涨幅预测等，仅仅娱乐</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/9891094539019604"  data-popper="9891094539019604" data-poptype="1">松塔0282</a></cite>
+                            <cite class="date">12-13 11:47</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>4</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,600696.html" class="balink">匹凸匹吧</a>]  <a href="/news,600696,578898102.html" title="本人炒屁股屁对几个数值比较敏感"  class="note">本人炒屁股屁对几个数值比较敏感</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/4925094199154318"  data-popper="4925094199154318" data-poptype="1">信邪乎</a></cite>
+                            <cite class="date">12-13 19:00</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>13585</cite>
+                            <cite>56</cite>
+                            <span class="sub">[<a href="/list,600037.html" class="balink">歌华有线吧</a>]  <a href="/news,600037,574618785.html" title="一一一歌华有线，股友们请记住一一一        股友们，请记住：歌华有线，去年"  class="note">一一一歌华有线，股友们请记住一一一        股友们，请记住：歌华有线，去年</a> </span>
+                            <cite class="aut"><span class="gray">广东广州手机网友</span></cite>
+                            <cite class="date">12-01 10:08</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>221</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,603878.html" class="balink">武进不锈吧</a>]  <a href="/news,603878,576974680.html" title="财神佑我，中签了"  class="note">财神佑我，中签了</a> </span>
+                            <cite class="aut"><span class="gray">广西网友</span></cite>
+                            <cite class="date">12-08 10:19</cite>
+                            <cite class="last">12-13 18:59</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>1853</cite>
+                            <cite>6</cite>
+                            <span class="sub">[<a href="/list,300268.html" class="balink">万福生科吧</a>]  <a href="/news,300268,578718200.html" title="300268运作手法解密"  class="note">300268运作手法解密</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/6916093983136960"  data-popper="6916093983136960" data-poptype="1">h229312116</a></cite>
+                            <cite class="date">12-13 11:39</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>4160</cite>
+                            <cite>9</cite>
+                            <span class="sub">[<a href="/list,603716.html" class="balink">塞力斯吧</a>]  <a href="/news,603716,578386061.html" title="好疼呀！早上追的！要我怎么办？还能活吗？"  class="note">好疼呀！早上追的！要我怎么办？还能活吗？</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/2419094292560048"  data-popper="2419094292560048" data-poptype="1">小资紫紫</a></cite>
+                            <cite class="date">12-12 16:02</cite>
+                            <cite class="last">12-13 08:59</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>689</cite>
+                            <cite>3</cite>
+                            <span class="sub">[<a href="/list,002353.html" class="balink">杰瑞股份吧</a>]  <a href="/news,002353,578850284.html" title="主力缩量反攻酝酿疯狂变盘"  class="note">主力缩量反攻酝酿疯狂变盘</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/4624094364663298"  data-popper="4624094364663298" data-poptype="1">股友18b93H</a></cite>
+                            <cite class="date">12-13 16:42</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>1012</cite>
+                            <cite>2</cite>
+                            <span class="sub">[<a href="/list,603033.html" class="balink">三维股份吧</a>]  <a href="/news,603033,578855891.html" title="海通证券给了35倍pe的38元左右的估值，这下三维可以上120了，哈哈哈哈~~~"  class="note">海通证券给了35倍pe的38元左右的估值，这下三维可以上120了，哈哈哈哈~~~</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/4295094472509200"  data-popper="4295094472509200" data-poptype="1">股友PyYro5</a></cite>
+                            <cite class="date">12-13 16:55</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>82436</cite>
+                            <cite>338</cite>
+                            <span class="sub">[<a href="/list,002666.html" class="balink">德联集团吧</a>]  <a href="/news,002666,567723778.html" title="开新贴：为什么要中长线持股？"  class="note">开新贴：为什么要中长线持股？</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/3784094222326980"  data-popper="3784094222326980" data-poptype="1">九尾老狐狸</a></cite>
+                            <cite class="date">11-11 08:10</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>7372</cite>
+                            <cite>44</cite>
+                            <span class="sub">[<a href="/list,000428.html" class="balink">华天酒店吧</a>]  <a href="/news,000428,577449930.html" title="三千企业；"  class="note">三千企业；</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5981111777681322"  data-popper="5981111777681322" data-poptype="1">真诚祝福</a></cite>
+                            <cite class="date">12-09 10:57</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>1102</cite>
+                            <cite>14</cite>
+                            <span class="sub">[<a href="/list,000735.html" class="balink">罗牛山吧</a>]  <a href="/news,000735,578486824.html" title="2016 证监会电子文件证明 罗牛山欺诈上市被调查"  class="note">2016 证监会电子文件证明 罗牛山欺诈上市被调查</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/6617134782282846"  data-popper="6617134782282846" data-poptype="1">股友41iA6L</a></cite>
+                            <cite class="date">12-12 20:28</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>11861</cite>
+                            <cite>121</cite>
+                            <span class="sub">[<a href="/list,zssh000001.html" class="balink">上证指数吧</a>]  <a href="/news,zssh000001,578165225.html" title="越跌越买"  class="note">越跌越买</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/1311094251881876"  data-popper="1311094251881876" data-poptype="1">疯狂一回8888</a></cite>
+                            <cite class="date">12-12 10:14</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>1141</cite>
+                            <cite>3</cite>
+                            <span class="sub">[<a href="/list,603816.html" class="balink">顾家家居吧</a>]  <a href="/news,603816,578671310.html" title="顾江生这畜牲不知在搞什么鬼，？？？"  class="note">顾江生这畜牲不知在搞什么鬼，？？？</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5536094229480384"  data-popper="5536094229480384" data-poptype="1">mp65332700938595</a></cite>
+                            <cite class="date">12-13 10:23</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>195096</cite>
+                            <cite>470</cite>
+                            <span class="sub">[<a href="/list,002751.html" class="balink">易尚展示吧</a>]  <a href="/news,002751,564956347.html" title="002751倍量过左峰,4号即将大涨,"  class="note">002751倍量过左峰,4号即将大涨,</a> <em class="himg"></em></span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/3663034741158786"  data-popper="3663034741158786" data-poptype="1">股海玄师</a></cite>
+                            <cite class="date">11-03 15:13</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>1296</cite>
+                            <cite>33</cite>
+                            <span class="sub">[<a href="/list,000725.html" class="balink">京东方A吧</a>]  <a href="/news,000725,191641210.html" title="垃圾中的战斗机"  class="note">垃圾中的战斗机</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5598094333275562"  data-popper="5598094333275562" data-poptype="1">一叶知秋921</a></cite>
+                            <cite class="date">07-31 15:28</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>189</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,300540.html" class="balink">深冷股份吧</a>]  <a href="/news,300540,578787200.html" title="尾盘卖出  最后出逃机会"  class="note">尾盘卖出  最后出逃机会</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/7905094383166716"  data-popper="7905094383166716" data-poptype="1">托马斯168</a></cite>
+                            <cite class="date">12-13 14:26</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>8658</cite>
+                            <cite>575</cite>
+                            <span class="sub">[<a href="/list,600556.html" class="balink">ST慧球吧</a>]  <a href="/news,600556,578151150.html" title="中小股东不买账，慧球开启新一轮下跌"  class="note">中小股东不买账，慧球开启新一轮下跌</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/8405134810500080"  data-popper="8405134810500080" data-poptype="1">青灯古佛1</a></cite>
+                            <cite class="date">12-12 09:58</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>2280</cite>
+                            <cite>4</cite>
+                            <span class="sub">[<a href="/list,002528.html" class="balink">英飞拓吧</a>]  <a href="/news,002528,577512201.html" title="大股东减持导致股价持续走低。但技术指标全部到位，周k低轨道，前一高位13天下跌，"  class="note">大股东减持导致股价持续走低。但技术指标全部到位，周k低轨道，前一高位13天下跌，</a> </span>
+                            <cite class="aut"><span class="gray">上海手机网友</span></cite>
+                            <cite class="date">12-09 13:27</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>4498</cite>
+                            <cite>12</cite>
+                            <span class="sub">[<a href="/list,601116.html" class="balink">三江购物吧</a>]  <a href="/news,601116,578879305.html" title="三江今天和双马10月20号的走势惊人的相似"  class="note">三江今天和双马10月20号的走势惊人的相似</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5130112361289246"  data-popper="5130112361289246" data-poptype="1">屡败屡战从头再来</a></cite>
+                            <cite class="date">12-13 18:05</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>344</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,300556.html" class="balink">丝路视觉吧</a>]  <a href="/news,300556,578852094.html" title="大家不要怕做盘中的T降低成本！一天一个点！20天以后你就知道结果了"  class="note">大家不要怕做盘中的T降低成本！一天一个点！20天以后你就知道结果了</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5032013612624940"  data-popper="5032013612624940" data-poptype="1">xyz88活着不易</a></cite>
+                            <cite class="date">12-13 16:46</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>15471</cite>
+                            <cite>175</cite>
+                            <span class="sub">[<a href="/list,000413.html" class="balink">东旭光电吧</a>]  <a href="/news,000413,557753529.html" title="利好刺激集中于近期，消息面短期内获得有力支撑"  class="note">利好刺激集中于近期，消息面短期内获得有力支撑</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/9068094395452574"  data-popper="9068094395452574" data-poptype="1">我是股海里一只鱼</a></cite>
+                            <cite class="date">10-11 16:20</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>4259</cite>
+                            <cite>22</cite>
+                            <span class="sub">[<a href="/list,zsgjftse.html" class="balink">英国富时100吧</a>]  <a href="/news,zsgjftse,578436839.html" title="[图片]"  class="note">[图片]</a> <em class="himg"></em></span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/4168094008081942"  data-popper="4168094008081942" data-poptype="1">太阳红似火</a></cite>
+                            <cite class="date">12-12 18:04</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>1328</cite>
+                            <cite>3</cite>
+                            <span class="sub">[<a href="/list,000520.html" class="balink">长航凤凰吧</a>]  <a href="/news,000520,578386682.html" title="请问大师什么时候给我解开套！套的好辛苦！疼呀！"  class="note">请问大师什么时候给我解开套！套的好辛苦！疼呀！</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/2419094292560048"  data-popper="2419094292560048" data-poptype="1">小资紫紫</a></cite>
+                            <cite class="date">12-12 16:03</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>2988</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,000691.html" class="balink">ST亚太吧</a>]  <a href="/news,000691,575072889.html" title="上下抽动"  class="note">上下抽动</a> </span>
+                            <cite class="aut"><span class="gray">安徽芜湖网友</span></cite>
+                            <cite class="date">12-02 10:36</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>8377</cite>
+                            <cite>10</cite>
+                            <span class="sub">[<a href="/list,000651.html" class="balink">格力电器吧</a>]  <a href="/news,000651,578870616.html" title="12月5日至今深港通合计买入了接近23亿格力电器，股价反而跌了，谁能告诉我为什么"  class="note">12月5日至今深港通合计买入了接近23亿格力电器，股价反而跌了，谁能告诉我为什么</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/4231094266458576"  data-popper="4231094266458576" data-poptype="1">一路陪同</a></cite>
+                            <cite class="date">12-13 17:41</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>2097</cite>
+                            <cite>4</cite>
+                            <span class="sub">[<a href="/list,600630.html" class="balink">龙头股份吧</a>]  <a href="/news,600630,578598274.html" title="龙头股份还要调整多久？看月线MACD成45度向下就知道这是中期调整，任何日线上的"  class="note">龙头股份还要调整多久？看月线MACD成45度向下就知道这是中期调整，任何日线上的</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5778094261253124"  data-popper="5778094261253124" data-poptype="1">剑神域</a></cite>
+                            <cite class="date">12-13 07:29</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>197</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,600332.html" class="balink">白云山吧</a>]  <a href="/news,600332,578873862.html" title="打压是为了给没有参与定增的员工再次上车的机会"  class="note">打压是为了给没有参与定增的员工再次上车的机会</a> </span>
+                            <cite class="aut"><span class="gray">广东深圳网友</span></cite>
+                            <cite class="date">12-13 17:50</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>32207</cite>
+                            <cite>177</cite>
+                            <span class="sub">[<a href="/list,601988.html" class="balink">中国银行吧</a>]  <a href="/news,601988,570269274.html" title="回答中油兄、goodwill826 、cdh2768 股友"  class="note">回答中油兄、goodwill826 、cdh2768 股友</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/8289113948792576"  data-popper="8289113948792576" data-poptype="1">换位思考1992</a></cite>
+                            <cite class="date">11-18 15:19</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>781</cite>
+                            <cite>3</cite>
+                            <span class="sub">[<a href="/list,600008.html" class="balink">首创股份吧</a>]  <a href="/news,600008,578851567.html" title="消息面上，12月12日《第一财经日报》记者从接近监管人士处独家获悉"  class="note">消息面上，12月12日《第一财经日报》记者从接近监管人士处独家获悉</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/5798111960065686"  data-popper="5798111960065686" data-poptype="1">nhabcnh01</a></cite>
+                            <cite class="date">12-13 16:45</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>396</cite>
+                            <cite>3</cite>
+                            <span class="sub">[<a href="/list,qqgs.html" class="balink">全球股市吧</a>]  <a href="/news,qqgs,578862916.html" title="预测：准！准！准预测：准准准"  class="note">预测：准！准！准预测：准准准</a> <em class="himg"></em></span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/7894013426537614"  data-popper="7894013426537614" data-poptype="1">三板宝1</a></cite>
+                            <cite class="date">12-13 17:17</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>2945</cite>
+                            <cite>9</cite>
+                            <span class="sub">[<a href="/list,002408.html" class="balink">齐翔腾达吧</a>]  <a href="/news,002408,578887499.html" title="齐翔腾达我不会卖的，除非出现黑天鹅，晒晒给大家打打气"  class="note">齐翔腾达我不会卖的，除非出现黑天鹅，晒晒给大家打打气</a> <em class="himg"></em></span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/2067013833515678"  data-popper="2067013833515678" data-poptype="1">资产巨鳄</a></cite>
+                            <cite class="date">12-13 18:28</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>4692</cite>
+                            <cite>36</cite>
+                            <span class="sub">[<a href="/list,600332.html" class="balink">白云山吧</a>]  <a href="/news,600332,566937813.html" title="大摩果然神"  class="note">大摩果然神</a> </span>
+                            <cite class="aut"><span class="gray">江苏南京网友</span></cite>
+                            <cite class="date">11-09 11:15</cite>
+                            <cite class="last">12-13 19:03</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>1237</cite>
+                            <cite>2</cite>
+                            <span class="sub">[<a href="/list,000651.html" class="balink">格力电器吧</a>]  <a href="/news,000651,576049913.html" title="傻散:问个问题，你们炒的股票名字叫前海人寿吗？"  class="note">傻散:问个问题，你们炒的股票名字叫前海人寿吗？</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/7245094290686312"  data-popper="7245094290686312" data-poptype="1">塔莫耶夫</a></cite>
+                            <cite class="date">12-05 21:23</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>34</cite>
+                            <cite>1</cite>
+                            <span class="sub">[<a href="/list,300399.html" class="balink">京天利吧</a>]  <a href="/news,300399,578894269.html" title="上周五399已经是程式化交易"  class="note">上周五399已经是程式化交易</a> </span>
+                            <cite class="aut"><span class="gray">天津网友</span></cite>
+                            <cite class="date">12-13 18:48</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>226</cite>
+                            <cite>3</cite>
+                            <span class="sub">[<a href="/list,300292.html" class="balink">吴通控股吧</a>]  <a href="/news,300292,578894820.html" title="那个什么8800你不觉得你像小丑吗？"  class="note">那个什么8800你不觉得你像小丑吗？</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/2320094417581434"  data-popper="2320094417581434" data-poptype="1">k601339</a></cite>
+                            <cite class="date">12-13 18:50</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li >
+                            <cite>3191</cite>
+                            <cite>10</cite>
+                            <span class="sub">[<a href="/list,399001.html" class="balink">深证成指吧</a>]  <a href="/news,399001,565414723.html" title="小散之一溅满此吧"  class="note">小散之一溅满此吧</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/4370094299636024"  data-popper="4370094299636024" data-poptype="1">愿赌V服输</a></cite>
+                            <cite class="date">11-04 17:02</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                        <li class="even">
+                            <cite>6156</cite>
+                            <cite>461</cite>
+                            <span class="sub">[<a href="/list,yuanyou.html" class="balink">原油吧</a>]  <a href="/news,yuanyou,576302435.html" title="《一世金》
+守好心态，交你如何对待大行情
+"  class="note">《一世金》
+守好心态，交你如何对待大行情
+</a> </span>
+                            <cite class="aut"><a href="http://iguba.eastmoney.com/7384084796981468"  data-popper="7384084796981468" data-poptype="1">股友d1u85C</a></cite>
+                            <cite class="date">12-06 14:31</cite>
+                            <cite class="last">12-13 19:02</cite>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="pagelist" id="pageArea">
+                    <span class="tip">共有帖子数 <i>55102268</i> 篇</span>
+                    <ul class="pagernums" data-pager="default_|55102268|80|2"></ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="dh10"></div>
+        <iframe width="980" height="90" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://same.eastmoney.com/s?z=eastmoney&c=993&op=1"></iframe>
+    </div>
+
+    <div class="wrap"><div class="gbbox2 gbhbl titCont t2"><div class="gbboxt"><h5>48小时股吧热门文章排行</h5></div><div class="gbboxb bbno"><div class="cont bg"><div class="balist"><div class="header"><span class="tit">标题</span><span class="num">阅读/评论</span></div><ul class="hotop"><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578350219.html">多重利空因素施压 沪指重挫逾2%创业板指暴跌超5%</a></span><cite><i>957279</i>/2274</cite></li><li class="first"><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578516791.html">消息称保监会周二将紧急召开会议 给出险资“举牌”意见</a></span><cite><i>730317</i>/742</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578268456.html">新华社点评激进投资监管：并非要将保险资金入市“一棍子打死”</a></span><cite><i>531423</i>/877</cite></li><li><span class="tit">[<a class="balink" href="list,zxb.html">中小板吧</a>]  <a href="news,zxb,578222268.html">深港通翻番机会 抄底！抄底！</a></span><cite><i>490284</i>/6</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578346360.html">10年期国债期货主力合约创出上市以来最大跌幅</a></span><cite><i>417825</i>/301</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,578370585.html">新一轮杀跌真的要来了吗</a></span><cite><i>378328</i>/46</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578586204.html">人民日报：险资支持实体经济需要真心实意</a></span><cite><i>357467</i>/838</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578224216.html">IPO加速等多重利空影响 沪指跌逾2%创业板跌逾5%破2000点</a></span><cite><i>325584</i>/1392</cite></li><li><span class="tit">[<a class="balink" href="list,gzqh.html">股指期货吧</a>]  <a href="news,gzqh,578662632.html">新机遇出现了，你准备好了吗</a></span><cite><i>282207</i>/1</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578105561.html">涨停板预测：45只股票有望涨停 附重大利好消息一览(名单)</a></span><cite><i>256577</i>/61</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,578382833.html">再忍3天 我将跑步进场</a></span><cite><i>246426</i>/26</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,578355764.html">四大原因引发今天大盘暴跌</a></span><cite><i>243495</i>/40</cite></li><li><span class="tit">[<a class="balink" href="list,600369.html">西南证券吧</a>]  <a href="news,600369,578755424.html">本抄底客宣布今日持仓5千手西南，10元见。</a></span><cite><i>237567</i>/3</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,578236161.html">A股暴跌只是因为这一句话？</a></span><cite><i>230709</i>/42</cite></li><li><span class="tit">[<a class="balink" href="list,zssh000001.html">上证指数吧</a>]  <a href="news,zssh000001,578101634.html">中线向上大格局依然不变，本周如出现急跌要大胆低吸</a></span><cite><i>228128</i>/138</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,578363429.html">警惕！谨防主力故伎重演</a></span><cite><i>223953</i>/31</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578103666.html">传闻监管部门调查“温州帮” 证监会称尚不掌握情况</a></span><cite><i>217227</i>/43</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578592514.html">美联储48小时内行动 全球迎战“加息冲击波”</a></span><cite><i>211581</i>/221</cite></li><li><span class="tit">[<a class="balink" href="list,tzzhtl.html">投资组合讨论吧</a>]  <a href="news,tzzhtl,578658061.html">我看好这只股</a></span><cite><i>191625</i>/1</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578125551.html">人民币中间价下调114点 再度跌破6.90重要大关</a></span><cite><i>191305</i>/96</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,578384714.html">这或许才是暴跌的真正原因</a></span><cite><i>189273</i>/25</cite></li><li><span class="tit">[<a class="balink" href="list,zssh000001.html">上证指数吧</a>]  <a href="news,zssh000001,578581492.html">周二，股市将这样走！（本周有望结束调整）</a></span><cite><i>187292</i>/42</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578388926.html">证券法修订草案“二读”年内无望 此前预计在12月进行</a></span><cite><i>186849</i>/108</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578264548.html">新华社点评2016中国资本市场：严守底线 扩大开放</a></span><cite><i>179582</i>/90</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578586378.html">隔夜外盘：欧股收跌道指再创收盘新高 油价创近17个月收盘新高</a></span><cite><i>169496</i>/146</cite></li></ul></div></div></div></div><div class="gbbox2 gbhbl titCont t2 t22 end"><div class="gbboxt"><h5>一周股吧热门文章排行</h5></div><div class="gbboxb bbno"><div class="cont bg"><div class="balist"><div class="header"><span class="tit">标题</span><span class="num">阅读/评论</span></div><ul class="hotop"><li class="first"><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,577380679.html">这优势杠杠的</a></span><cite><i>2725848</i>/4</cite></li><li><span class="tit">[<a class="balink" href="list,dcblog.html">博客吧</a>]  <a href="news,dcblog,577370734.html">常学习，常进步</a></span><cite><i>2292383</i>/6</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577625909.html">保监会暂停恒大人寿委托股票投资业务 恒大人寿回应称深刻反省</a></span><cite><i>1888481</i>/973</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577712537.html">证监会12月9日核发IPO批文 14家企业筹资总额预计不超过54亿元</a></span><cite><i>1117500</i>/675</cite></li><li><span class="tit">[<a class="balink" href="list,dcblog.html">博客吧</a>]  <a href="news,dcblog,577383452.html">看新闻才能把握股市动脉</a></span><cite><i>1092696</i>/3</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578350219.html">多重利空因素施压 沪指重挫逾2%创业板指暴跌超5%</a></span><cite><i>957279</i>/2274</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578078327.html">证监会今年已下发256张IPO批文 新股发行接近“即审即批”</a></span><cite><i>949556</i>/408</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577772711.html">政治局会议点题2017年经济工作：改善投资环境 扩大开放领域</a></span><cite><i>799102</i>/196</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578516791.html">消息称保监会周二将紧急召开会议 给出险资“举牌”意见</a></span><cite><i>730317</i>/742</cite></li><li><span class="tit">[<a class="balink" href="list,zssh000001.html">上证指数吧</a>]  <a href="news,zssh000001,577778130.html">大利空将至 下周或上演惨烈一幕</a></span><cite><i>622237</i>/88</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577625509.html">政治局部署2017年经济工作任务 将推进国企财税金融等领域改革</a></span><cite><i>602771</i>/251</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,577366840.html">仅供学习</a></span><cite><i>600317</i>/1</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578268456.html">新华社点评激进投资监管：并非要将保险资金入市“一棍子打死”</a></span><cite><i>531423</i>/877</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577771806.html">隔夜外盘：欧美股市本周大涨美股连创新高 美元走强金价连跌五周</a></span><cite><i>506814</i>/401</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577624166.html">证监会：对调查浙江游资“温州帮”配资的消息将作进一步了解</a></span><cite><i>505634</i>/91</cite></li><li><span class="tit">[<a class="balink" href="list,zxb.html">中小板吧</a>]  <a href="news,zxb,578222268.html">深港通翻番机会 抄底！抄底！</a></span><cite><i>490284</i>/6</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577581581.html">权重股走强沪指小幅收涨 深市三大股指全线下挫</a></span><cite><i>436573</i>/393</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578346360.html">10年期国债期货主力合约创出上市以来最大跌幅</a></span><cite><i>417825</i>/301</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577973135.html">周末要闻：证监会发14家IPO批文 政治局会议点题明年经济工作</a></span><cite><i>406988</i>/167</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,577594605.html">今天，一批股票敲响丧钟</a></span><cite><i>406162</i>/36</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,578370585.html">新一轮杀跌真的要来了吗</a></span><cite><i>378328</i>/46</cite></li><li><span class="tit">[<a class="balink" href="list,gssz.html">股市实战吧</a>]  <a href="news,gssz,577940583.html">股市内参：大事件太多 周一或巨震</a></span><cite><i>369288</i>/19</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578586204.html">人民日报：险资支持实体经济需要真心实意</a></span><cite><i>357467</i>/838</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,577969544.html">深交所副总经理金立扬：要改进创业板制度安排</a></span><cite><i>353499</i>/124</cite></li><li><span class="tit">[<a class="balink" href="list,cjpl.html">财经评论吧</a>]  <a href="news,cjpl,578224216.html">IPO加速等多重利空影响 沪指跌逾2%创业板跌逾5%破2000点</a></span><cite><i>325584</i>/1392</cite></li></ul></div></div></div></div><div class=" "></div></div>
+    <div class="wrap">
+        <div style="color: #888888; padding: 10px 0 0 0; clear: both; line-height: 120%;">
+            提示：用户在社区发表的所有资料、言论等仅代表个人观点，与本网站立场无关，不对您构成任何投资建议。用户应基于自己的独立判断，自行决定证券投资并承担相应风险。
+        </div>
+    </div>
+
+    <div class="dh10"></div>
+    <div id="footer" class="gbbody">
+    	<p class="splp"><a href="http://corp.eastmoney.com/aboutus/" target="_blank">关于我们</a>　　<a href="http://corp.eastmoney.com/Lianxi_guanggao.asp" target="_blank">广告服务</a>　　<a href="http://corp.eastmoney.com/Lianxi_lianxi.asp" target="_blank">联系我们</a>　　<a href="http://corp.eastmoney.com/zhaopin/zhaopin_1.asp" target="_blank">诚聘英才</a>　　<a href="http://corp.eastmoney.com/lianxi_mianze.asp" target="_blank">免责声明</a>　　<a href="http://corp.eastmoney.com/Lianxi_falvshengming.asp" target="_blank">法律声明</a>　　<a href="http://corp.eastmoney.com/Lianxi_zhengao.asp" target="_blank">征稿启事</a>　　<a href="http://corp.eastmoney.com/media.asp" target="_blank">友情链接</a></p>
+    	<p class="sphp"></p>
+        <p>违法和不良信息举报:021-54509988-2345/021-24099099　　　<a href="http://corp.eastmoney.com/Lianxi_liuyan.asp" target="_blank"><img src="http://g1.dfcfw.com/g1/comm/msg.gif" border="0" />意见与建议</a></p>
+        <p class="sphp"></p>
+        <p><img src="http://g1.dfcfw.com/g1/comm/icp.gif" />&nbsp;沪ICP证：沪B2-20070217&nbsp;&nbsp;<a style="display:inline-block;text-decoration:none;height:20px;line-height:20px;" href="http://shcainfo.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">网站备案号：沪ICP备05006054号-11</a>&nbsp;&nbsp;<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402000119" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/images/ghs.png" style="float:left;"/>沪公网安备 31010402000119号</a>&nbsp;&nbsp;版权所有：<a href="http://www.eastmoney.com" target="_blank">东方财富网</a></p>
+        <p><a href="http://www.cyberpolice.cn/" target="_blank"><img src="http://g1.dfcfw.com/g1/comm/police.gif" border="0" /></a></p>
+</div>
+<!--172.17.25.57-->
+    <script src="//gbfek.dfcfw.com/gubav5/js/gubabase_da218adfac.js"></script>
+    <script src="//gbfek.dfcfw.com/gubav5/js/module_e1c34ca55c.js"></script>
+    <script src="//gbfek.dfcfw.com/gubav5/js/base_efd50c3dfb.js"></script>
+    <script src="//gbfek.dfcfw.com/gubav5/js/index_a3a1555a2c.js"></script>
+    <!--172.17.25.57-->
+    <!-- AdSame ShowCode: 东方财富网 / 股吧 / 股吧对联 Begin -->
+    <script language="javascript" type="text/javascript" src="http://same.eastmoney.com/s?z=eastmoney&c=213"></script>
+    <!-- AdSame ShowCode: 东方财富网 / 股吧 / 股吧对联 End -->
+    <script type="text/javascript">var _cpyno = "c1"</script>
+    <script type="text/javascript" src="http://js4.eastmoney.com/counter.js?c=t"></script>
+    
+    <script language="javascript" type="text/javascript" src="http://same.eastmoney.com/s?z=eastmoney&c=1255"></script>
+
+
+
+    <script src="//gbfek.dfcfw.com/tg/EMBottomSearchTG/EMBottomSearchTG-1.0.3.min.js?v=1"></script>
+    
+    <script type="text/javascript">
+        var newEMBottomSearchTG = new EMBottomSearchTG({
+            main_width: 1000,
+            main_img: 'http://z1.dfcfw.com/2015/6/10/201506101029321460568336.jpg', //推广图片  imgurl
+            link: 'http://stattg.eastmoney.com/10267' //推广链接  aurl
+        });
+        newEMBottomSearchTG.show();
+    </script>
+<script type="text/javascript">
+    window.emLeftBodyWidth = 1000; 
+    window.emRightBodyWidth = 1040 ; 
+    window.switchBackTop = 0; 
+    window.emRightadDataType = "guba";
+
+    window.dc_sampleRate=100;
+</script>
+<script type="text/javascript" src="http://emres.dfcfw.com/public/js/left.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://emres.dfcfw.com/public/js/em_news_fixed_right.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://cmsjs.eastmoney.com/analysis/emhotarea.min.js?v=20150923"></script>
+
+
+    <script type="text/javascript" src="http://cmsjs.eastmoney.com/analysis/emtj.min.js?v=20150401"></script>
+</body>
+</html>
