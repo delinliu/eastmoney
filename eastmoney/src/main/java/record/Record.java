@@ -93,11 +93,13 @@ public class Record {
 	public String nextUrl() throws RecordException {
 		synchronized (crawlingList) {
 			synchronized (crawledSet) {
-				String url;
-				if (crawlingPos < crawlingList.size()
-						&& !crawledSet.contains((url = crawlingList.get(crawlingPos++)))) {
+				String url = null;
+				while (crawlingPos < crawlingList.size()
+						&& crawledSet.contains((url = crawlingList.get(crawlingPos++)))) {
+				} 
+				if(url != null && !crawledSet.contains(url)){
 					return url;
-				} else {
+				}else {
 					throw new RecordException("No more url.");
 				}
 			}
