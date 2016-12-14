@@ -30,7 +30,7 @@ public class ArticleParserTest {
 		Assert.assertEquals("西部黄金吧", article.getBarName());
 
 		List<Comment> comments = parser.parseComments(pageContent);
-		article.setComments(comments);
+		article.addComments(comments);
 		Assert.assertEquals(30, article.getComments().size());
 		Comment firstComment = article.getComments().get(0);
 		Assert.assertEquals("小田田终于等到机会来炒底了，这次看准了吗", firstComment.getComment());

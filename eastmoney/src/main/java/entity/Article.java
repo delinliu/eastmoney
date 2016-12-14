@@ -99,12 +99,7 @@ public class Article {
 		return comments;
 	}
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+	public void addComments(List<Comment> comments) {
+		this.comments.addAll(comments);
 	}
-
-	public void addComment(Comment comment) {
-		comments.add(comment);
-	}
-
 }

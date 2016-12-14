@@ -1,6 +1,7 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -20,6 +21,17 @@ final public class Util {
 		}
 		reader.close();
 		return content.toString();
+	}
+
+	public static void deleteFolder(File folder) {
+		if (folder.isFile()) {
+			folder.delete();
+		} else if (folder.isDirectory()) {
+			for (File sub : folder.listFiles()) {
+				deleteFolder(sub);
+			}
+			folder.delete();
+		}
 	}
 
 }

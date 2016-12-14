@@ -14,14 +14,14 @@ import java.net.URLConnection;
 final public class SimpleHttpFetcher implements HttpFetcher {
 
     @Override
-    public String fetchContent(String url) throws HttpFetcherException {
+    public String fetchContent(String url, int timeout) throws HttpFetcherException {
 
         try {
 
             // Open the connection
             URL u = new URL(url);
             URLConnection connection = u.openConnection();
-            connection.setReadTimeout(3000);
+            connection.setReadTimeout(timeout);
             HttpURLConnection htCon = (HttpURLConnection) connection;
             int res = htCon.getResponseCode();
 

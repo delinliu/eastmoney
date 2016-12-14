@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import entity.Article;
 import entity.Comment;
 
-public class Record {
+public class Record implements UrlProvider, UrlReceiver {
 
 	// 记录已经爬过的url
 	private Set<String> crawledSet;
@@ -96,10 +96,10 @@ public class Record {
 				String url = null;
 				while (crawlingPos < crawlingList.size()
 						&& crawledSet.contains((url = crawlingList.get(crawlingPos++)))) {
-				} 
-				if(url != null && !crawledSet.contains(url)){
+				}
+				if (url != null && !crawledSet.contains(url)) {
 					return url;
-				}else {
+				} else {
 					throw new RecordException("No more url.");
 				}
 			}
@@ -204,7 +204,8 @@ public class Record {
 		buffer.append("[bar name]:").append(article.getBarName()).append("\n");
 		buffer.append("[article]:").append("\n");
 		buffer.append(article.getArticle()).append("\n");
-		buffer.append("[comments]:").append("\n");
+		buffer.append("[comments]: all " + article.getTotalComment() + ", crawled " + article.getComments().size())
+				.append("\n");
 		int seq = 1;
 		for (Comment comment : article.getComments()) {
 			buffer.append("[comment " + seq++ + "]").append("\n");

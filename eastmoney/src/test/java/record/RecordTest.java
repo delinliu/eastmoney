@@ -24,13 +24,13 @@ public class RecordTest {
 	@Test
 	public void test() throws Exception {
 
-		deleteFolder(new File("test"));
+		Util.deleteFolder(new File("test"));
 
 		String pageContent = Util.readFile(articlePath);
 		ArticleParser parser = new ArticleParser();
 		Article article = parser.parseArticle(pageContent);
 		List<Comment> comments = parser.parseComments(pageContent);
-		article.setComments(comments);
+		article.addComments(comments);
 		Record record = new Record("test/log", "test/data");
 		record.setDataSize(7 * 1024);
 		record.addArticle("test1.html", article);
@@ -97,17 +97,6 @@ public class RecordTest {
 			Assert.assertTrue(false);
 		} catch (RecordException e) {
 			// empty
-		}
-	}
-
-	private void deleteFolder(File folder) {
-		if (folder.isFile()) {
-			folder.delete();
-		} else if (folder.isDirectory()) {
-			for (File sub : folder.listFiles()) {
-				deleteFolder(sub);
-			}
-			folder.delete();
 		}
 	}
 }
