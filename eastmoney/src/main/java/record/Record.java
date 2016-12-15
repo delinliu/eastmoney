@@ -27,6 +27,10 @@ public class Record implements UrlProvider, UrlReceiver {
 	private int crawlingPos = 0; // crawlingList的下标
 	private String crawlingFile = "crawling.log";
 
+	// 爬过了，但是发现被删除了的url
+	private Set<String> removedSet;
+	private String removedFile = "removed.log";
+
 	// page是列表页面已经爬到多少页了
 	// file是存储数据到了多少个文件了
 	private String meta = "meta.log";
@@ -86,6 +90,7 @@ public class Record implements UrlProvider, UrlReceiver {
 
 	private void init() {
 		loadCrawledSet();
+		loadRemovedSet();
 		loadCrawlingList();
 		loadMeta();
 		System.out.println("Crawling list size is " + crawlingList.size());
@@ -110,6 +115,18 @@ public class Record implements UrlProvider, UrlReceiver {
 		}
 	}
 
+	public void addRemovedUrl(String url) throws IOException {
+		synchronized (removedSet) {
+			removedSet.add(url);
+		}
+		synchronized (removedFile) {
+			RandomAccessFile raf = new RandomAccessFile(removedFile, "rw");
+			raf.seek(raf.length());
+			raf.write(url.getBytes());
+			raf.close();
+		}
+	}
+
 	/**
 	 * 添加一个页面的url
 	 * 
@@ -119,6 +136,9 @@ public class Record implements UrlProvider, UrlReceiver {
 	public void addOnePageList(Set<String> urls) throws IOException {
 		synchronized (crawledSet) {
 			urls.removeAll(crawledSet);
+		}
+		synchronized (removedSet) {
+			urls.removeAll(removedSet);
 		}
 
 		if (!urls.isEmpty()) {
@@ -264,13 +284,28 @@ public class Record implements UrlProvider, UrlReceiver {
 		}
 	}
 
+	private void loadRemovedSet() {
+		removedSet = new HashSet<>();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(removedFile));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				removedSet.add(line);
+			}
+			reader.close();
+		} catch (IOException e) {
+			System.err.println("Cannot load removed set, because: " + e.getMessage());
+		}
+	}
+
 	private void loadCrawlingList() {
 		crawlingList = new ArrayList<>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(crawlingFile));
 			String line;
 			while ((line = reader.readLine()) != null) {
-				if (!crawledSet.contains(line)) {
+				// 成果爬虫过了、已经被删除了的url不需要放进待爬虫列表中
+				if (!crawledSet.contains(line) && !removedSet.contains(line)) {
 					crawlingList.add(line);
 				}
 			}

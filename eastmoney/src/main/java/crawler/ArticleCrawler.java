@@ -76,11 +76,14 @@ public class ArticleCrawler {
 				}
 				if (url != null) {
 					Article article = null;
+
+					// 组装url
+					String partUrl = url;
+					url = baseUrl + partUrl;
+
 					try {
 
-						// 组装url，爬页面
-						String partUrl = url;
-						url = baseUrl + partUrl;
+						// 爬页面
 						System.out.println("Crawling page [" + url + "].");
 						String content = fetcher.fetchContent(url, timeoutSecond * 1000);
 						System.out.println("Crawled  page [" + url + "].");
@@ -127,7 +130,16 @@ public class ArticleCrawler {
 					} catch (HttpFetcherException e) {
 						e.printStackTrace();
 					} catch (ParserException e) {
-						e.printStackTrace();
+						if ("Article removed.".equals(e.getMessage())) {
+							System.out.println("Article removed [" + url + "].");
+							try {
+								provider.addRemovedUrl(partUrl);
+							} catch (Exception ee) {
+								ee.printStackTrace();
+							}
+						} else {
+							e.printStackTrace();
+						}
 					} catch (IOException e) {
 						e.printStackTrace();
 					} catch (Exception e) {
