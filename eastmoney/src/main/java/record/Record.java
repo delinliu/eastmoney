@@ -31,6 +31,9 @@ public class Record implements UrlProvider, UrlReceiver {
 	private Set<String> removedSet;
 	private String removedFile = "removed.log";
 
+	// 临时的set，不会保存到磁盘中，用它来保存正在爬虫的url，防止多个线程同时爬一个url
+	private Set<String> tmpSet = new HashSet<>();
+
 	// page是列表页面已经爬到多少页了
 	// file是存储数据到了多少个文件了
 	private String meta = "meta.log";
@@ -104,10 +107,14 @@ public class Record implements UrlProvider, UrlReceiver {
 		synchronized (crawlingList) {
 			synchronized (crawledSet) {
 				String url = null;
-				while (crawlingPos < crawlingList.size()
-						&& crawledSet.contains((url = crawlingList.get(crawlingPos++)))) {
+				while (crawlingPos < crawlingList.size()) {
+					url = crawlingList.get(crawlingPos++);
+					if (!crawledSet.contains(url) && !tmpSet.contains(url)) {
+						break;
+					}
 				}
 				if (url != null && !crawledSet.contains(url)) {
+					tmpSet.add(url);
 					return url;
 				} else {
 					throw new RecordException("No more url.");

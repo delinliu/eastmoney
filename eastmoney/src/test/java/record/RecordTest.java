@@ -47,7 +47,7 @@ public class RecordTest {
 		record.addArticle("test2.html", article);
 		record.addArticle("test3.html", article);
 		Assert.assertEquals(1, record.getPageAmount());
-		Assert.assertEquals(3, record.getFileAmount());
+		Assert.assertEquals(2, record.getFileAmount());
 		assertRecordNoNextUrl(record);
 
 		record.addOnePageList(new HashSet<String>(Arrays.asList(new String[] { "t1.html", "t2.html", "t3.html" })));
@@ -83,11 +83,11 @@ public class RecordTest {
 		record.addArticle("test6.html", article);
 		record.addOnePageList(urls);
 		Assert.assertEquals(3, record.getPageAmount());
-		Assert.assertEquals(5, record.getFileAmount());
+		Assert.assertEquals(3, record.getFileAmount());
 
 		record = new Record("test/log", "test/data");
 		Assert.assertEquals(3, record.getPageAmount());
-		Assert.assertEquals(5, record.getFileAmount());
+		Assert.assertEquals(3, record.getFileAmount());
 
 	}
 
