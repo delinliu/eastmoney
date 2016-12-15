@@ -265,11 +265,10 @@ public class Record implements UrlProvider, UrlReceiver {
 		crawlingList = new ArrayList<>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(crawlingFile));
-			Set<String> set = new HashSet<>();
 			String line;
 			while ((line = reader.readLine()) != null) {
 				if (!crawledSet.contains(line)) {
-					set.add(line);
+					crawlingList.add(line);
 				}
 			}
 			reader.close();
