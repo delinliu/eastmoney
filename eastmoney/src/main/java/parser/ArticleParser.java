@@ -111,12 +111,20 @@ public class ArticleParser implements ArticleParserInterface {
 	}
 
 	private String title(Document document) throws ParserException {
-		String field = "[Title] ";
+		// String field = "[Title] ";
 		Element element = document.getElementById("zwconttbt");
-		checkUnique(element, field + "Id zwconttbt is not 1.");
+
+		// 有些文章真的没有标题
+		if (element == null) {
+			return "";
+		}
+
+		// checkUnique(element, field + "Id zwconttbt is not 1.");
+
 		String title = element.text().trim();
 		if (title.isEmpty()) {
-			throw new ParserException(field + "Cannot find title.");
+			return "";
+			// throw new ParserException(field + "Cannot find title.");
 		}
 		return title;
 	}
@@ -157,16 +165,33 @@ public class ArticleParser implements ArticleParserInterface {
 	}
 
 	private String article(Document document) throws ParserException {
+
 		String field = "[Article] ";
+
+		// 普通文章模式
 		Element element = document.getElementById("zwconbody");
-		checkUnique(element, field + "Id zwconbody is not 1.");
-		String article = element.text().trim();
-		
-		// 有些文章没有文章，都是图片
-		if (article.isEmpty()) {
-			// throw new ParserException(field + "Cannot find article.");
+		if (element != null) {
+			String article = element.text().trim();
+			return article;
 		}
-		return article;
+
+		// 问答模
+		Elements elements = document.getElementsByClass("zwcontentmain");
+		if (!elements.isEmpty()) {
+			Elements contents = elements.get(0).getElementsByClass("content");
+			StringBuilder qa = new StringBuilder();
+			boolean flag = false;
+			for (Element e : contents) {
+				if (flag) {
+					qa.append("\n");
+				}
+				flag = true;
+				qa.append(e.text());
+			}
+			return qa.toString();
+		}
+
+		throw new ParserException(field + "Cannot find article.");
 
 	}
 }

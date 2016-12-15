@@ -15,6 +15,8 @@ public class ArticleParserTest {
 	static final String articlePath = "src/test/resources/article.html";
 	static final String articleNoCommentPath = "src/test/resources/article-no-comments.html";
 	static final String article404Path = "src/test/resources/article-404.html";
+	static final String articleNoTitlePath = "src/test/resources/article-no-title.html";
+	static final String articleQa = "src/test/resources/article-qa.html";
 
 	@Test
 	public void test() throws Exception {
@@ -54,5 +56,14 @@ public class ArticleParserTest {
 		} catch (ParserException e) {
 			Assert.assertEquals("Article removed.", e.getMessage());
 		}
+
+		pageContent = Util.readFile(articleNoTitlePath);
+		parser.parseArticle(pageContent);
+
+		pageContent = Util.readFile(articleQa);
+		article = parser.parseArticle(pageContent);
+		Assert.assertEquals(
+				"请问公司，闲置资金购买理财，而不增持本公司股票，是不是对格林美股票未来走势没有信心？\n格林美： 公司购买理财产品的资金分别为未到使用期的定增募集资金股权转让款和部分闲置的自有资金，有利于提高公司资金的利用率，降低财务成本。",
+				article.getArticle());
 	}
 }
