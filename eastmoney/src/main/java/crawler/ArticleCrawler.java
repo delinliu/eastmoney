@@ -79,7 +79,8 @@ public class ArticleCrawler {
 					try {
 
 						// 组装url，爬页面
-						url = baseUrl + url;
+						String partUrl = url;
+						url = baseUrl + partUrl;
 						System.out.println("Crawling page [" + url + "].");
 						String content = fetcher.fetchContent(url, timeoutSecond * 1000);
 						System.out.println("Crawled  page [" + url + "].");
@@ -90,6 +91,7 @@ public class ArticleCrawler {
 						List<Comment> comments = parser.parseComments(content);
 						System.out.println("Parsed comments [" + url + "].");
 						article.addComments(comments);
+						article.setFirstPageUrl(url);
 
 						// 循环爬取所有评论
 						int totalPages = article.getTotalPages();
@@ -120,7 +122,7 @@ public class ArticleCrawler {
 								}
 							}
 						}
-						provider.addArticle(url, article);
+						provider.addArticle(partUrl, article);
 
 					} catch (HttpFetcherException e) {
 						e.printStackTrace();

@@ -88,6 +88,10 @@ public class Record implements UrlProvider, UrlReceiver {
 		loadCrawledSet();
 		loadCrawlingList();
 		loadMeta();
+		System.out.println("Crawling list size is " + crawlingList.size());
+		System.out.println("Crawled set size is " + crawledSet.size());
+		System.out.println("Page is now " + page.get());
+		System.out.println("File is now " + file.get());
 	}
 
 	public String nextUrl() throws RecordException {
@@ -197,7 +201,7 @@ public class Record implements UrlProvider, UrlReceiver {
 
 	private String article2String(String url, Article article) {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append("Begin============").append(url).append("============").append("\n");
+		buffer.append("Begin============").append(article.getFirstPageUrl()).append("============").append("\n");
 		buffer.append("[title]:").append(article.getTitle()).append("\n");
 		buffer.append("[author]:").append(article.getAuthor()).append("\n");
 		buffer.append("[publish time]:").append(article.getPublishTime()).append("\n");
@@ -244,7 +248,6 @@ public class Record implements UrlProvider, UrlReceiver {
 			page = new AtomicInteger(1);
 			file = new AtomicInteger(1);
 		}
-		System.out.println("[page=" + page + "], [file=" + file + "]");
 	}
 
 	private void loadCrawledSet() {
