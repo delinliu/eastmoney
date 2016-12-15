@@ -18,14 +18,11 @@ public class ArticleParser implements ArticleParserInterface {
 	@Override
 	public Article parseArticle(String pageContent) throws ParserException {
 
-		Document document = Jsoup.parse(pageContent);
-
-		// 文章被删除了
-		Elements titles = document.getElementsByTag("title");
-		if (!titles.isEmpty() && "Object moved".equals(titles.get(0).text())) {
+		if (pageContent.contains("<title>Object moved</title>")) {
 			throw new ParserException("Article removed.");
 		}
 
+		Document document = Jsoup.parse(pageContent);
 		int totalComment = totalComment(document);
 		int totalPages = (totalComment + 29) / 30;
 		String title = title(document);

@@ -53,6 +53,7 @@ public class ArticleParserTest {
 		pageContent = Util.readFile(article404Path);
 		try {
 			parser.parseArticle(pageContent);
+			Assert.assertTrue(false);
 		} catch (ParserException e) {
 			Assert.assertEquals("Article removed.", e.getMessage());
 		}
