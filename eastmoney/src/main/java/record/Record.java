@@ -123,7 +123,7 @@ public class Record implements UrlProvider, UrlReceiver {
 		synchronized (removedFile) {
 			RandomAccessFile raf = new RandomAccessFile(removedFile, "rw");
 			raf.seek(raf.length());
-			raf.write(url.getBytes());
+			raf.write((url + "\n").getBytes());
 			raf.close();
 		}
 	}
