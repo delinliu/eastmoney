@@ -5,4 +5,6 @@ import java.util.Set;
 
 public interface UrlReceiver {
 	void addOnePageList(Set<String> urls) throws IOException;
+
+	int getPageAmount();
 }
