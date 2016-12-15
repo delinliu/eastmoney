@@ -68,6 +68,7 @@ public class Record implements UrlProvider, UrlReceiver {
 		if (!logFolder.isEmpty()) {
 			crawledFile = logFolder + "/" + crawledFile;
 			crawlingFile = logFolder + "/" + crawlingFile;
+			removedFile = logFolder + "/" + removedFile;
 			meta = logFolder + "/" + meta;
 		}
 	}
