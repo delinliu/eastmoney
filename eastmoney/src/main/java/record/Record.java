@@ -188,6 +188,13 @@ public class Record implements UrlProvider, UrlReceiver {
 	 */
 	public void addArticle(String url, Article article) throws IOException {
 
+		synchronized (crawledSet) {
+			// 如果已经爬虫过了，则不再添加
+			if (crawledSet.contains(url)) {
+				return;
+			}
+		}
+
 		RandomAccessFile raf = new RandomAccessFile(getFileName(), "rw");
 		long length = raf.length();
 		if (length > dataSize) {

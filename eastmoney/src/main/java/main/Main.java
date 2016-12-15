@@ -13,8 +13,8 @@ public class Main {
 		ArticleListCrawler listCrawler = new ArticleListCrawler(record);
 		ArticleCrawler articleCrawler = new ArticleCrawler(record);
 
-		// 文章列表爬虫，单线程，每次爬虫间隔60秒钟，超时30秒钟
-		listCrawler.start(1, 60, 30);
+		// 文章列表爬虫，单线程，每次爬虫间隔20秒钟，超时30秒钟
+		listCrawler.start(1, 20, 30);
 
 		// 文章爬虫，2线程，每次爬虫间隔1秒钟，超时10秒钟，当没有文章可爬的时候暂停60秒钟
 		articleCrawler.start(2, 1, 60, 10); //
