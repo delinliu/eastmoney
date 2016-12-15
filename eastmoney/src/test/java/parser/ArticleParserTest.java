@@ -14,6 +14,7 @@ public class ArticleParserTest {
 	// http://guba.eastmoney.com/news,601069,164123294.html
 	static final String articlePath = "src/test/resources/article.html";
 	static final String articleNoCommentPath = "src/test/resources/article-no-comments.html";
+	static final String article404Path = "src/test/resources/article-404.html";
 
 	@Test
 	public void test() throws Exception {
@@ -46,5 +47,12 @@ public class ArticleParserTest {
 		article = parser.parseArticle(pageContent);
 		Assert.assertEquals(0, article.getTotalComment());
 		Assert.assertEquals(0, article.getTotalPages());
+
+		pageContent = Util.readFile(article404Path);
+		try {
+			parser.parseArticle(pageContent);
+		} catch (ParserException e) {
+			Assert.assertEquals("Article removed.", e.getMessage());
+		}
 	}
 }

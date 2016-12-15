@@ -19,6 +19,13 @@ public class ArticleParser implements ArticleParserInterface {
 	public Article parseArticle(String pageContent) throws ParserException {
 
 		Document document = Jsoup.parse(pageContent);
+
+		// 文章被删除了
+		Elements titles = document.getElementsByTag("title");
+		if (!titles.isEmpty() && "Object moved".equals(titles.get(0).text())) {
+			throw new ParserException("Article removed.");
+		}
+
 		int totalComment = totalComment(document);
 		int totalPages = (totalComment + 29) / 30;
 		String title = title(document);
@@ -88,12 +95,12 @@ public class ArticleParser implements ArticleParserInterface {
 	private int totalComment(Document document) throws ParserException {
 		String field = "[Total Comment] ";
 		Element element = document.getElementById("zwcontab");
-		
+
 		// 没有这个id就是没有评论
-		if(element == null) {
+		if (element == null) {
 			return 0;
 		}
-		
+
 		String text = element.text().replaceAll(" ", "");
 		Pattern p = Pattern.compile("全部评论（([0-9]+)）");
 		Matcher m = p.matcher(text);
@@ -154,8 +161,10 @@ public class ArticleParser implements ArticleParserInterface {
 		Element element = document.getElementById("zwconbody");
 		checkUnique(element, field + "Id zwconbody is not 1.");
 		String article = element.text().trim();
+		
+		// 有些文章没有文章，都是图片
 		if (article.isEmpty()) {
-			throw new ParserException(field + "Cannot find article.");
+			// throw new ParserException(field + "Cannot find article.");
 		}
 		return article;
 
