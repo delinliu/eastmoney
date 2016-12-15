@@ -13,6 +13,7 @@ public class ArticleParserTest {
 
 	// http://guba.eastmoney.com/news,601069,164123294.html
 	static final String articlePath = "src/test/resources/article.html";
+	static final String articleNoCommentPath = "src/test/resources/article-no-comments.html";
 
 	@Test
 	public void test() throws Exception {
@@ -41,5 +42,9 @@ public class ArticleParserTest {
 		Assert.assertEquals("2015-05-08 20:37:34", lastComment.getPublishTime());
 		Assert.assertEquals("田兄：你对4.29那个涨停板怎么看？我看不像是一路人做的。是不是拉板的人被撂倒了？", lastComment.getComment());
 
+		pageContent = Util.readFile(articleNoCommentPath);
+		article = parser.parseArticle(pageContent);
+		Assert.assertEquals(0, article.getTotalComment());
+		Assert.assertEquals(0, article.getTotalPages());
 	}
 }

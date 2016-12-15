@@ -88,7 +88,12 @@ public class ArticleParser implements ArticleParserInterface {
 	private int totalComment(Document document) throws ParserException {
 		String field = "[Total Comment] ";
 		Element element = document.getElementById("zwcontab");
-		checkUnique(element, field + "Id zwcontab is not 1.");
+		
+		// 没有这个id就是没有评论
+		if(element == null) {
+			return 0;
+		}
+		
 		String text = element.text().replaceAll(" ", "");
 		Pattern p = Pattern.compile("全部评论（([0-9]+)）");
 		Matcher m = p.matcher(text);
