@@ -217,7 +217,7 @@ public class Record implements UrlProvider, UrlReceiver {
 			buffer.append("[comment publish time]:").append(comment.getPublishTime()).append("\n");
 			buffer.append("[comment]:").append(comment.getComment()).append("\n");
 		}
-		buffer.append("End============").append(url).append("============").append("\n\n");
+		buffer.append("End============").append(article.getFirstPageUrl()).append("============").append("\n\n");
 		return buffer.toString();
 	}
 
