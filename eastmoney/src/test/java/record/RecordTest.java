@@ -83,11 +83,11 @@ public class RecordTest {
 		record.addArticle("test6.html", article);
 		record.addOnePageList(urls);
 		Assert.assertEquals(3, record.getPageAmount());
-		Assert.assertEquals(3, record.getFileAmount());
+		Assert.assertEquals(4, record.getFileAmount());
 
 		record = new Record("test/log", "test/data");
 		Assert.assertEquals(3, record.getPageAmount());
-		Assert.assertEquals(3, record.getFileAmount());
+		Assert.assertEquals(4, record.getFileAmount());
 
 	}
 

@@ -123,15 +123,31 @@ public class Record implements UrlProvider, UrlReceiver {
 		}
 	}
 
-	public void addRemovedUrl(String url) throws IOException {
+	private StringBuilder removedUrlBuffer = new StringBuilder();
+
+	/**
+	 * 添加一个removed url到缓存
+	 */
+	public void addRemovedUrl(String url) {
 		synchronized (removedSet) {
 			removedSet.add(url);
 		}
 		synchronized (removedFile) {
-			RandomAccessFile raf = new RandomAccessFile(removedFile, "rw");
-			raf.seek(raf.length());
-			raf.write((url + "\n").getBytes());
-			raf.close();
+			removedUrlBuffer.append(url).append("\n");
+		}
+	}
+
+	/**
+	 * 把removed url刷入磁盘
+	 * 
+	 * @throws IOException
+	 */
+	private void flushRemovedUrl() throws IOException {
+		synchronized (removedFile) {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(removedFile, true));
+			writer.append(removedUrlBuffer);
+			writer.close();
+			removedUrlBuffer.delete(0, removedUrlBuffer.length());
 		}
 	}
 
@@ -186,6 +202,8 @@ public class Record implements UrlProvider, UrlReceiver {
 		return name;
 	}
 
+	private StringBuilder articleBuffer = new StringBuilder();
+
 	/**
 	 * 保存一篇文章（包括评论）
 	 * 
@@ -202,35 +220,49 @@ public class Record implements UrlProvider, UrlReceiver {
 			}
 		}
 
-		RandomAccessFile raf = new RandomAccessFile(getFileName(), "rw");
-		long length = raf.length();
-		if (length > dataSize) {
-			raf.close();
-			file.incrementAndGet();
-			saveMeta();
-			addArticle(url, article);
-		} else {
-
-			// 保存文章
-			raf.seek(length);
-			raf.write(article2String(url, article).getBytes());
-			raf.close();
-
-			// 更新crawledSet，更新crawledFile
+		String content = article2String(url, article);
+		synchronized (articleBuffer) {
+			articleBuffer.append(content).append("\n");
 			addCrawledUrl(url);
+			if (articleBuffer.length() > dataSize) {
+
+				// 写入文章文件
+				BufferedWriter writer = new BufferedWriter(new FileWriter(getFileName(), true));
+				writer.write(articleBuffer.toString());
+				writer.close();
+				articleBuffer.delete(0, articleBuffer.length());
+
+				// 写入已经爬好的url
+				flushCrawledUrl();
+
+				// 写入爬虫失败的url
+				flushRemovedUrl();
+
+				file.incrementAndGet();
+
+				// 写入meta
+				saveMeta();
+			}
 		}
 	}
+
+	private StringBuilder crawledUrlBuffer = new StringBuilder();
 
 	private void addCrawledUrl(String url) throws IOException {
 		synchronized (crawledSet) {
 			crawledSet.add(url);
 		}
 		synchronized (crawledFile) {
-			RandomAccessFile raf = new RandomAccessFile(crawledFile, "rw");
-			long length = raf.length();
-			raf.seek(length);
-			raf.write((url + "\n").getBytes());
-			raf.close();
+			crawledUrlBuffer.append(url).append("\n");
+		}
+	}
+
+	private void flushCrawledUrl() throws IOException {
+		synchronized (crawledFile) {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(crawledFile, true));
+			writer.append(crawledUrlBuffer.toString());
+			writer.close();
+			crawledUrlBuffer.delete(0, crawledUrlBuffer.length());
 		}
 	}
 
@@ -257,13 +289,15 @@ public class Record implements UrlProvider, UrlReceiver {
 	}
 
 	private void saveMeta() {
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(meta));
-			writer.write("page=" + page + "\r\n");
-			writer.write("file=" + file + "\r\n");
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		synchronized (meta) {
+			try {
+				BufferedWriter writer = new BufferedWriter(new FileWriter(meta));
+				writer.write("page=" + page + "\r\n");
+				writer.write("file=" + file + "\r\n");
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
