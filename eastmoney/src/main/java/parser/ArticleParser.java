@@ -20,7 +20,8 @@ public class ArticleParser implements ArticleParserInterface {
 
 		Document document = Jsoup.parse(pageContent);
 
-		if (!document.getElementsByClass("gb404").isEmpty()) {
+		if (!document.getElementsByClass("gb404").isEmpty()
+				|| !document.getElementsByClass("report-content").isEmpty()) {
 			throw new ParserException("Article removed.");
 		}
 

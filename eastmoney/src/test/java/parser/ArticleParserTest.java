@@ -15,6 +15,7 @@ public class ArticleParserTest {
 	static final String articlePath = "src/test/resources/article.html";
 	static final String articleNoCommentPath = "src/test/resources/article-no-comments.html";
 	static final String article404Path = "src/test/resources/article-404.html";
+	static final String articleReportPath = "src/test/resources/article-report.html";;
 	static final String articleNoTitlePath = "src/test/resources/article-no-title.html";
 	static final String articleQa = "src/test/resources/article-qa.html";
 
@@ -51,6 +52,14 @@ public class ArticleParserTest {
 		Assert.assertEquals(0, article.getTotalPages());
 
 		pageContent = Util.readFile(article404Path);
+		try {
+			parser.parseArticle(pageContent);
+			Assert.assertTrue(false);
+		} catch (ParserException e) {
+			Assert.assertEquals("Article removed.", e.getMessage());
+		}
+
+		pageContent = Util.readFile(articleReportPath);
 		try {
 			parser.parseArticle(pageContent);
 			Assert.assertTrue(false);
