@@ -42,7 +42,8 @@ public class ArticleListCrawler {
 			return;
 		}
 
-		logger.info("List crawler starts.");
+		logger.info("List crawler starts, [threadAmount=" + threadAmount + ", sleepSecond=" + sleepSecond
+				+ ", timeoutSecond=" + timeoutSecond + "].");
 		this.timeoutSecond = timeoutSecond;
 		this.sleepSecond = sleepSecond;
 		executor = Executors.newFixedThreadPool(threadAmount);
