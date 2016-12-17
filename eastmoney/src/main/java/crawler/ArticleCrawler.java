@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import entity.Article;
 import entity.Comment;
 import http_fetcher.HttpFetcher;
@@ -17,6 +20,8 @@ import record.RecordException;
 import record.UrlProvider;
 
 public class ArticleCrawler {
+
+	private Logger logger = LoggerFactory.getLogger(ArticleCrawler.class);
 
 	private boolean isRunning = false;
 	private int sleepSecond;
@@ -37,7 +42,7 @@ public class ArticleCrawler {
 			return;
 		}
 
-		System.out.println("Start article crawler, [threadAmount=" + threadAmount + ", sleepSecond=" + sleepSecond
+		logger.info("Start article crawler, [threadAmount=" + threadAmount + ", sleepSecond=" + sleepSecond
 				+ ", waitSecond=" + waitSecond + ", timeoutSecond=" + timeoutSecond + "].");
 		this.sleepSecond = sleepSecond;
 		this.waitSecond = waitSecond;
@@ -53,7 +58,7 @@ public class ArticleCrawler {
 		if (!isRunning) {
 			return;
 		}
-		System.out.println("Stop article crawler.");
+		logger.info("Stop article crawler.");
 		executor.shutdownNow();
 		executor = null;
 		isRunning = false;
@@ -64,7 +69,7 @@ public class ArticleCrawler {
 		@Override
 		public void run() {
 
-			System.out.println("Crawler thread[" + Thread.currentThread().getId() + "] starts.");
+			logger.info("Crawler thread[" + Thread.currentThread().getId() + "] starts.");
 
 			// 每次循环都尝试爬取一篇文章（包括它的所有评论）
 			loop: while (true) {
@@ -84,15 +89,15 @@ public class ArticleCrawler {
 					try {
 
 						// 爬页面
-						System.out.println("Crawling page [" + url + "].");
+						logger.info("Crawling page [" + url + "].");
 						String content = fetcher.fetchContent(url, timeoutSecond * 1000);
-						System.out.println("Crawled  page [" + url + "].");
+						logger.info("Crawled  page [" + url + "].");
 
 						// 解析文章和第一页的评论
 						article = parser.parseArticle(content);
-						System.out.println("Parsed article [" + url + "].");
+						logger.info("Parsed article [" + url + "].");
 						List<Comment> comments = parser.parseComments(content);
-						System.out.println("Parsed comments [" + url + "].");
+						logger.info("Parsed comments [" + url + "].");
 						article.addComments(comments);
 						article.setFirstPageUrl(url);
 
@@ -107,60 +112,60 @@ public class ArticleCrawler {
 								try {
 									Thread.sleep(1000 * sleepSecond);
 								} catch (InterruptedException e) {
-									e.printStackTrace();
+									logger.error(null, e);
 									break loop;
 								}
 
 								try {
 									String subUrl = p1 + "_" + i + "." + p2;
-									System.out.println("Crawling sub page [" + subUrl + "].");
+									logger.info("Crawling sub page [" + subUrl + "].");
 									String subContent = fetcher.fetchContent(subUrl, timeoutSecond * 1000);
-									System.out.println("Crawled  page [" + subUrl + "].");
+									logger.info("Crawled  page [" + subUrl + "].");
 									List<Comment> subComments = parser.parseComments(subContent);
 									article.addComments(subComments);
-									System.out.println("Parsed comments [" + subUrl + "].");
+									logger.info("Parsed comments [" + subUrl + "].");
 								} catch (Exception e) {
 									// 爬评论的时候，发生任何错误都可以容忍，不会影响下一页评论的爬虫，也不会影响已经爬取的内容
-									e.printStackTrace();
+									logger.error(null, e);
 								}
 							}
 						}
 						provider.addArticle(partUrl, article);
 
 					} catch (HttpFetcherException e) {
-						e.printStackTrace();
+						logger.error(null, e);
 					} catch (ParserException e) {
 						if ("Article removed.".equals(e.getMessage())) {
-							System.out.println("Article removed [" + url + "].");
+							logger.info("Article removed [" + url + "].");
 							try {
 								provider.addRemovedUrl(partUrl);
 							} catch (Exception ee) {
-								ee.printStackTrace();
+								logger.error(null, ee);
 							}
 						} else {
-							e.printStackTrace();
+							logger.error(null, e);
 						}
 					} catch (IOException e) {
-						e.printStackTrace();
+						logger.error(null, e);
 					} catch (Exception e) {
-						e.printStackTrace();
+						logger.error(null, e);
 					}
 				} else {
 					try {
 						Thread.sleep(1000 * waitSecond);
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						logger.error(null, e);
 						break loop;
 					}
 				}
 				try {
 					Thread.sleep(1000 * sleepSecond);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					logger.error(null, e);
 					break loop;
 				}
 			}
-			System.out.println("Crawler thread[" + Thread.currentThread().getId() + "] quits.");
+			logger.info("Crawler thread[" + Thread.currentThread().getId() + "] quits.");
 		}
 	}
 }

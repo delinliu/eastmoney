@@ -6,6 +6,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import http_fetcher.HttpFetcher;
 import http_fetcher.HttpFetcherException;
 import http_fetcher.SimpleHttpFetcher;
@@ -15,6 +18,8 @@ import parser.ParserException;
 import record.UrlReceiver;
 
 public class ArticleListCrawler {
+
+	private Logger logger = LoggerFactory.getLogger(ArticleListCrawler.class);
 
 	private boolean isRunning;
 	private UrlReceiver receiver;
@@ -37,7 +42,7 @@ public class ArticleListCrawler {
 			return;
 		}
 
-		System.out.println("List crawler starts.");
+		logger.info("List crawler starts.");
 		this.timeoutSecond = timeoutSecond;
 		this.sleepSecond = sleepSecond;
 		executor = Executors.newFixedThreadPool(threadAmount);
@@ -52,7 +57,7 @@ public class ArticleListCrawler {
 		if (!isRunning) {
 			return;
 		}
-		System.out.println("List crawler stops.");
+		logger.info("List crawler stops.");
 		executor.shutdownNow();
 		isRunning = false;
 	}
@@ -62,38 +67,38 @@ public class ArticleListCrawler {
 		@Override
 		public void run() {
 
-			System.out.println("Article list crawler[" + Thread.currentThread().getId() + "] start.");
+			logger.info("Article list crawler[" + Thread.currentThread().getId() + "] start.");
 
 			loop: while (true) {
 				int currPage = page.getAndIncrement();
 				if (currPage > maxPage) {
-					System.out.println("Article list crawler[" + Thread.currentThread().getId() + "] finished.");
+					logger.info("Article list crawler[" + Thread.currentThread().getId() + "] finished.");
 					break loop;
 				}
 				String url = String.format(urlTemplate, currPage);
-				System.out.println("Crawling list page [" + url + "].");
+				logger.info("Crawling list page [" + url + "].");
 				try {
 					String content = fetcher.fetchContent(url, 1000 * timeoutSecond);
-					System.out.println("Crawled list page [" + url + "].");
+					logger.info("Crawled list page [" + url + "].");
 					Set<String> urls = parser.parseList(content);
-					System.out.println("Parsed list page [" + url + "].");
+					logger.info("Parsed list page [" + url + "].");
 					receiver.addOnePageList(urls);
 				} catch (HttpFetcherException e) {
-					e.printStackTrace();
+					logger.error(null, e);
 				} catch (ParserException e) {
-					e.printStackTrace();
+					logger.error(null, e);
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(null, e);
 				}
 				try {
 					Thread.sleep(1000 * sleepSecond);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					logger.error(null, e);
 					break loop;
 				}
 			}
 
-			System.out.println("Article list crawler[" + Thread.currentThread().getId() + "] stop.");
+			logger.info("Article list crawler[" + Thread.currentThread().getId() + "] stop.");
 		}
 	}
 }

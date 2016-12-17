@@ -13,10 +13,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import entity.Article;
 import entity.Comment;
 
 public class Record implements UrlProvider, UrlReceiver {
+
+	private Logger logger = LoggerFactory.getLogger(Record.class);
 
 	// 记录已经爬过的url
 	private Set<String> crawledSet;
@@ -97,10 +102,10 @@ public class Record implements UrlProvider, UrlReceiver {
 		loadRemovedSet();
 		loadCrawlingList();
 		loadMeta();
-		System.out.println("Crawling list size is " + crawlingList.size());
-		System.out.println("Crawled set size is " + crawledSet.size());
-		System.out.println("Page is now " + page.get());
-		System.out.println("File is now " + file.get());
+		logger.info("Crawling list size is " + crawlingList.size());
+		logger.info("Crawled set size is " + crawledSet.size());
+		logger.info("Page is now " + page.get());
+		logger.info("File is now " + file.get());
 	}
 
 	public String nextUrl() throws RecordException {
@@ -296,7 +301,7 @@ public class Record implements UrlProvider, UrlReceiver {
 				writer.write("file=" + file + "\r\n");
 				writer.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(null, e);
 			}
 		}
 	}
