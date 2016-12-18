@@ -86,12 +86,16 @@ public class ArticleCrawler {
 					String partUrl = url;
 					url = baseUrl + partUrl;
 
+					long begin, end;
 					try {
 
 						// 爬页面
 						logger.info("Crawling page [" + url + "].");
+						begin = System.currentTimeMillis();
 						String content = fetcher.fetchContent(url, timeoutSecond * 1000);
+						end = System.currentTimeMillis();
 						logger.info("Crawled  page [" + url + "].");
+						logger.info("Crawling time [" + (end - begin) + "].");
 
 						// 解析文章和第一页的评论
 						article = parser.parseArticle(content);
@@ -130,7 +134,11 @@ public class ArticleCrawler {
 								}
 							}
 						}
+
+						begin = System.currentTimeMillis();
 						provider.addArticle(partUrl, article);
+						end = System.currentTimeMillis();
+						logger.info("Add article time [" + (end - begin) + "].");
 
 					} catch (HttpFetcherException e) {
 						logger.error(null, e);
