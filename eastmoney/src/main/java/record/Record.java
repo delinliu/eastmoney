@@ -260,9 +260,9 @@ public class Record implements UrlProvider, UrlReceiver {
 			saveMeta();
 
 			// 更新crawlingList
-			synchronized (crawlingList) {
-				crawlingList.addAll(urls);
-			}
+			// synchronized (crawlingList) {
+			// crawlingList.addAll(urls);
+			// }
 
 			// 更新crawlingFile
 			synchronized (crawlingFile) {
