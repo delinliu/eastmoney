@@ -75,9 +75,14 @@ public class ArticleCrawler {
 
 			// 每次循环都尝试爬取一篇文章（包括它的所有评论）
 			loop: while (true) {
+				long loopBegin = System.currentTimeMillis();
+				long begin, end;
 				String url = null;
 				try {
+					begin = System.currentTimeMillis();
 					url = provider.nextUrl();
+					end = System.currentTimeMillis();
+					logger.info("[" + threadId + "] Get url time [" + (end - begin) + "].");
 				} catch (RecordException e1) {
 					e1.printStackTrace();
 				}
@@ -88,7 +93,6 @@ public class ArticleCrawler {
 					String partUrl = url;
 					url = baseUrl + partUrl;
 
-					long begin, end;
 					try {
 
 						// 爬页面
@@ -108,6 +112,7 @@ public class ArticleCrawler {
 						article.setFirstPageUrl(url);
 
 						// 循环爬取所有评论
+						begin = System.currentTimeMillis();
 						int totalPages = article.getTotalPages();
 						int dotPos = url.lastIndexOf('.'); // 原页面的url假设为http://xxx.html，那么评论第二页的格式则是http://xxx_2.html
 						if (dotPos != -1) {
@@ -136,6 +141,8 @@ public class ArticleCrawler {
 								}
 							}
 						}
+						end = System.currentTimeMillis();
+						logger.info("[" + threadId + "] Crawling comments time [" + (end - begin) + "].");
 
 						begin = System.currentTimeMillis();
 						provider.addArticle(partUrl, article);
@@ -174,6 +181,8 @@ public class ArticleCrawler {
 					logger.error(null, e);
 					break loop;
 				}
+				long loopEnd = System.currentTimeMillis();
+				logger.info("[" + threadId + "] All time is [" + (loopEnd - loopBegin) + "].");
 			}
 			logger.info("Crawler thread[" + threadId + "] quits.");
 		}
