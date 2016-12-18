@@ -24,16 +24,16 @@ public class Record implements UrlProvider, UrlReceiver {
 	private Logger logger = LoggerFactory.getLogger(Record.class);
 
 	// 记录已经爬过的url
-	private Set<String> crawledSet;
+	private Set<String> crawledSet = new HashSet<>();
 	private String crawledFile = "crawled.log";
 
 	// 记录还没有爬过的url
-	private List<String> crawlingList;
+	private List<String> crawlingList = new ArrayList<>();
 	private int crawlingPos = 0; // crawlingList的下标
 	private String crawlingFile = "crawling.log";
 
 	// 爬过了，但是发现被删除了的url
-	private Set<String> removedSet;
+	private Set<String> removedSet = new HashSet<>();
 	private String removedFile = "removed.log";
 
 	// 临时的set，不会保存到磁盘中，用它来保存正在爬虫的url，防止多个线程同时爬一个url
@@ -98,9 +98,7 @@ public class Record implements UrlProvider, UrlReceiver {
 	}
 
 	private void init() {
-		loadCrawledSet();
-		loadRemovedSet();
-		loadCrawlingList();
+		initListAndSet();
 		loadMeta();
 		logger.info("Crawling list size is " + crawlingList.size());
 		logger.info("Crawled set size is " + crawledSet.size());
@@ -108,7 +106,86 @@ public class Record implements UrlProvider, UrlReceiver {
 		logger.info("File is now " + file.get());
 	}
 
+	private int initCrawlingSize = 10000;
+	private int initCrawledSize = 1000;
+
+	private void initListAndSet() {
+
+		// 锁住所有变量（除了meta）
+		synchronized (crawlingList) {
+			synchronized (articleBuffer) {
+				synchronized (crawledSet) {
+					synchronized (crawledFile) {
+						synchronized (crawlingFile) {
+							synchronized (removedFile) {
+
+								// 加载3个list
+								List<String> crawled = loadList(crawledFile);
+								List<String> removed = loadList(removedFile);
+								List<String> crawling = loadList(crawlingFile);
+
+								// crawled转成set，并且把缓存中的数据也加上
+								Set<String> crawledSet = new HashSet<>(crawled);
+								addUrlBufferToSet(crawledSet, crawledUrlBuffer);
+								crawledSet.addAll(tmpSet);
+
+								// removed转成set，并且把缓存中的数据也加上
+								Set<String> removedSet = new HashSet<>(removed);
+								addUrlBufferToSet(removedSet, removedUrlBuffer);
+
+								// 把crawling中已经爬虫过的url删除掉放入crawlingList中，并且其size有上限
+								List<String> crawlingList = new ArrayList<>(initCrawlingSize);
+								for (String url : crawling) {
+									if (!crawledSet.contains(url) && !removedSet.contains(url)) {
+										crawlingList.add(url);
+										if (crawlingList.size() >= initCrawlingSize) {
+											break;
+										}
+									}
+								}
+
+								// 重置crawlingList
+								this.crawlingList.clear();
+								this.crawlingList.addAll(crawlingList);
+								crawlingPos = 0;
+
+								// 重置crawledSet，size有上限
+								this.crawledSet.clear();
+								for (int i = crawled.size() - 1; i >= 0
+										&& this.crawledSet.size() < initCrawledSize; i--) {
+									this.crawledSet.add(crawled.get(i));
+								}
+								addUrlBufferToSet(this.crawledSet, crawledUrlBuffer);
+
+								// 重置removedSet
+								this.removedSet.clear();
+								this.removedSet.addAll(removedSet);
+
+								System.out.println("Init List and Set successful, crawling[" + crawling.size()
+										+ "] crawlingList[" + this.crawlingList.size() + "] crawled[" + crawled.size()
+										+ "] crawledSet[" + this.crawledSet.size() + "] removed[" + removed.size()
+										+ "] removedSet[" + this.removedSet.size() + "]");
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void addUrlBufferToSet(Set<String> set, StringBuilder buffer) {
+		for (String url : buffer.toString().split("\n")) {
+			if (!url.isEmpty()) {
+				set.add(url);
+			}
+		}
+	}
+
 	public String nextUrl() throws RecordException {
+		return nextUrlHelper(1);
+	}
+
+	private String nextUrlHelper(int tryAmount) throws RecordException {
 		synchronized (crawlingList) {
 			synchronized (crawledSet) {
 				String url = null;
@@ -122,7 +199,12 @@ public class Record implements UrlProvider, UrlReceiver {
 					tmpSet.add(url);
 					return url;
 				} else {
-					throw new RecordException("No more url.");
+					if (tryAmount <= 0) {
+						throw new RecordException("No more url.");
+					} else {
+						initListAndSet();
+						return nextUrlHelper(tryAmount - 1);
+					}
 				}
 			}
 		}
@@ -223,6 +305,7 @@ public class Record implements UrlProvider, UrlReceiver {
 			if (crawledSet.contains(url)) {
 				return;
 			}
+			tmpSet.remove(url);
 		}
 
 		String content = article2String(url, article);
@@ -324,48 +407,18 @@ public class Record implements UrlProvider, UrlReceiver {
 		}
 	}
 
-	private void loadCrawledSet() {
-		crawledSet = new HashSet<>();
+	private List<String> loadList(String file) {
+		List<String> crawledList = new ArrayList<>();
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(crawledFile));
+			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line;
 			while ((line = reader.readLine()) != null) {
-				crawledSet.add(line);
+				crawledList.add(line);
 			}
 			reader.close();
 		} catch (IOException e) {
-			System.err.println("Cannot load crawled set, because: " + e.getMessage());
+			System.err.println("Cannot load list [" + file + "], because: " + e.getMessage());
 		}
-	}
-
-	private void loadRemovedSet() {
-		removedSet = new HashSet<>();
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(removedFile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				removedSet.add(line);
-			}
-			reader.close();
-		} catch (IOException e) {
-			System.err.println("Cannot load removed set, because: " + e.getMessage());
-		}
-	}
-
-	private void loadCrawlingList() {
-		crawlingList = new ArrayList<>();
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(crawlingFile));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				// 成果爬虫过了、已经被删除了的url不需要放进待爬虫列表中
-				if (!crawledSet.contains(line) && !removedSet.contains(line)) {
-					crawlingList.add(line);
-				}
-			}
-			reader.close();
-		} catch (IOException e) {
-			System.err.println("Cannot load crawling set, because: " + e.getMessage());
-		}
+		return crawledList;
 	}
 }
