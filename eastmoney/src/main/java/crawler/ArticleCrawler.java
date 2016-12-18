@@ -104,12 +104,15 @@ public class ArticleCrawler {
 						logger.info("[" + threadId + "] Crawling time [" + (end - begin) + "].");
 
 						// 解析文章和第一页的评论
+						begin = System.currentTimeMillis();
 						article = parser.parseArticle(content);
 						logger.info("[" + threadId + "] Parsed article [" + url + "].");
 						List<Comment> comments = parser.parseComments(content);
 						logger.info("[" + threadId + "] Parsed comments [" + url + "].");
 						article.addComments(comments);
 						article.setFirstPageUrl(url);
+						end = System.currentTimeMillis();
+						logger.info("[" + threadId + "] Parse time [" + (end - begin) + "].");
 
 						// 循环爬取所有评论
 						begin = System.currentTimeMillis();
@@ -175,12 +178,15 @@ public class ArticleCrawler {
 						break loop;
 					}
 				}
+				begin = System.currentTimeMillis();
 				try {
 					Thread.sleep(1000 * sleepSecond);
 				} catch (InterruptedException e) {
 					logger.error(null, e);
 					break loop;
 				}
+				end = System.currentTimeMillis();
+				logger.info("[" + threadId + "] sleep time [" + (end - begin) + "].");
 				long loopEnd = System.currentTimeMillis();
 				logger.info("[" + threadId + "] All time is [" + (loopEnd - loopBegin) + "].");
 			}
