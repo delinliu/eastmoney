@@ -123,6 +123,7 @@ public class Record implements UrlProvider, UrlReceiver {
 								List<String> crawled = loadList(crawledFile);
 								List<String> removed = loadList(removedFile);
 								List<String> crawling = loadList(crawlingFile);
+								logger.info("Loaded crawled, removed and crawling.");
 
 								// crawled转成set，并且把缓存中的数据也加上
 								Set<String> crawledSet = new HashSet<>(crawled);
@@ -161,7 +162,7 @@ public class Record implements UrlProvider, UrlReceiver {
 								this.removedSet.clear();
 								this.removedSet.addAll(removedSet);
 
-								System.out.println("Init List and Set successful, crawling[" + crawling.size()
+								logger.info("Init List and Set successful, crawling[" + crawling.size()
 										+ "] crawlingList[" + this.crawlingList.size() + "] crawled[" + crawled.size()
 										+ "] crawledSet[" + this.crawledSet.size() + "] removed[" + removed.size()
 										+ "] removedSet[" + this.removedSet.size() + "]");
