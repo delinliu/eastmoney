@@ -69,7 +69,9 @@ public class ArticleCrawler {
 		@Override
 		public void run() {
 
-			logger.info("Crawler thread[" + Thread.currentThread().getId() + "] starts.");
+			long threadId = Thread.currentThread().getId();
+
+			logger.info("Crawler thread[" + threadId + "] starts.");
 
 			// 每次循环都尝试爬取一篇文章（包括它的所有评论）
 			loop: while (true) {
@@ -90,18 +92,18 @@ public class ArticleCrawler {
 					try {
 
 						// 爬页面
-						logger.info("Crawling page [" + url + "].");
+						logger.info("[" + threadId + "] Crawling page [" + url + "].");
 						begin = System.currentTimeMillis();
 						String content = fetcher.fetchContent(url, timeoutSecond * 1000);
 						end = System.currentTimeMillis();
-						logger.info("Crawled  page [" + url + "].");
-						logger.info("Crawling time [" + (end - begin) + "].");
+						logger.info("[" + threadId + "] Crawled  page [" + url + "].");
+						logger.info("[" + threadId + "] Crawling time [" + (end - begin) + "].");
 
 						// 解析文章和第一页的评论
 						article = parser.parseArticle(content);
-						logger.info("Parsed article [" + url + "].");
+						logger.info("[" + threadId + "] Parsed article [" + url + "].");
 						List<Comment> comments = parser.parseComments(content);
-						logger.info("Parsed comments [" + url + "].");
+						logger.info("[" + threadId + "] Parsed comments [" + url + "].");
 						article.addComments(comments);
 						article.setFirstPageUrl(url);
 
@@ -122,12 +124,12 @@ public class ArticleCrawler {
 
 								try {
 									String subUrl = p1 + "_" + i + "." + p2;
-									logger.info("Crawling sub page [" + subUrl + "].");
+									logger.info("[" + threadId + "] Crawling sub page [" + subUrl + "].");
 									String subContent = fetcher.fetchContent(subUrl, timeoutSecond * 1000);
-									logger.info("Crawled  page [" + subUrl + "].");
+									logger.info("[" + threadId + "] Crawled  page [" + subUrl + "].");
 									List<Comment> subComments = parser.parseComments(subContent);
 									article.addComments(subComments);
-									logger.info("Parsed comments [" + subUrl + "].");
+									logger.info("[" + threadId + "] Parsed comments [" + subUrl + "].");
 								} catch (Exception e) {
 									// 爬评论的时候，发生任何错误都可以容忍，不会影响下一页评论的爬虫，也不会影响已经爬取的内容
 									logger.error(null, e);
@@ -144,7 +146,7 @@ public class ArticleCrawler {
 						logger.error(null, e);
 					} catch (ParserException e) {
 						if ("Article removed.".equals(e.getMessage())) {
-							logger.info("Article removed [" + url + "].");
+							logger.info("[" + threadId + "] Article removed [" + url + "].");
 							try {
 								provider.addRemovedUrl(partUrl);
 							} catch (Exception ee) {
@@ -173,7 +175,7 @@ public class ArticleCrawler {
 					break loop;
 				}
 			}
-			logger.info("Crawler thread[" + Thread.currentThread().getId() + "] quits.");
+			logger.info("Crawler thread[" + threadId + "] quits.");
 		}
 	}
 }
