@@ -32,6 +32,11 @@ public class Record implements UrlProvider, UrlReceiver {
 	private int crawlingPos = 0; // crawlingList的下标
 	private String crawlingFile = "crawling.log";
 
+	// 记录文件中的爬虫位置
+	private AtomicInteger crawlingRecord = new AtomicInteger(0);
+	private String crawlingRecordFile = "pos.log";
+	private int loadTimeLoadCrawlingSize = 0;
+
 	// 爬过了，但是发现被删除了的url
 	private Set<String> removedSet = new HashSet<>();
 	private String removedFile = "removed.log";
@@ -100,14 +105,20 @@ public class Record implements UrlProvider, UrlReceiver {
 	private void init() {
 		initListAndSet();
 		loadMeta();
+		loadCrawlingRecord();
 		logger.info("Crawling list size is " + crawlingList.size());
 		logger.info("Crawled set size is " + crawledSet.size());
 		logger.info("Page is now " + page.get());
 		logger.info("File is now " + file.get());
+		logger.info("Crawling record is now " + crawlingRecord.get());
 	}
 
-	private int initCrawlingSize = 10000;
-	private int initCrawledSize = 1000;
+	// 初始化完毕后，crawlingList和crawledSet的size大致在这个数字
+	private int initCrawlingSize = 30000;
+	private int initCrawledSize = 3000;
+
+	// 初始化时从文件中读取的数目为这个数值
+	private int loadSize = 70000;
 
 	private void initListAndSet() {
 
@@ -119,10 +130,13 @@ public class Record implements UrlProvider, UrlReceiver {
 						synchronized (crawlingFile) {
 							synchronized (removedFile) {
 
+								crawlingRecord.addAndGet(loadTimeLoadCrawlingSize);
+								saveCrawlingRecord();
+
 								// 加载3个list
-								List<String> crawled = loadList(crawledFile);
-								List<String> removed = loadList(removedFile);
-								List<String> crawling = loadList(crawlingFile);
+								List<String> crawled = loadListFromEnd(crawledFile, loadSize);
+								List<String> removed = loadList(removedFile, 0, loadSize);
+								List<String> crawling = loadList(crawlingFile, crawlingRecord.get(), loadSize);
 								logger.info("Loaded crawled, removed and crawling.");
 
 								// crawled转成set，并且把缓存中的数据也加上
@@ -135,6 +149,7 @@ public class Record implements UrlProvider, UrlReceiver {
 								addUrlBufferToSet(removedSet, removedUrlBuffer);
 
 								// 把crawling中已经爬虫过的url删除掉放入crawlingList中，并且其size有上限
+								int thisTimeLoadCrawlingSize = 0;
 								List<String> crawlingList = new ArrayList<>(initCrawlingSize);
 								for (String url : crawling) {
 									if (!crawledSet.contains(url) && !removedSet.contains(url)) {
@@ -143,7 +158,9 @@ public class Record implements UrlProvider, UrlReceiver {
 											break;
 										}
 									}
+									thisTimeLoadCrawlingSize++;
 								}
+								loadTimeLoadCrawlingSize = thisTimeLoadCrawlingSize;
 
 								// 重置crawlingList
 								this.crawlingList.clear();
@@ -165,7 +182,8 @@ public class Record implements UrlProvider, UrlReceiver {
 								logger.info("Init List and Set successful, crawling[" + crawling.size()
 										+ "] crawlingList[" + this.crawlingList.size() + "] crawled[" + crawled.size()
 										+ "] crawledSet[" + this.crawledSet.size() + "] removed[" + removed.size()
-										+ "] removedSet[" + this.removedSet.size() + "]");
+										+ "] removedSet[" + this.removedSet.size() + "] thisTimeLoadCrawlingSize["
+										+ thisTimeLoadCrawlingSize + "]");
 							}
 						}
 					}
@@ -390,6 +408,33 @@ public class Record implements UrlProvider, UrlReceiver {
 		}
 	}
 
+	private void saveCrawlingRecord() {
+		synchronized (crawlingRecordFile) {
+			try {
+				BufferedWriter writer = new BufferedWriter(new FileWriter(crawlingRecordFile));
+				writer.write("crawling=" + crawlingRecord + "\r\n");
+				writer.close();
+			} catch (IOException e) {
+				logger.error(null, e);
+			}
+		}
+	}
+
+	private void loadCrawlingRecord() {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(crawlingRecordFile));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.matches("crawling=[0-9]+")) {
+					crawlingRecord.set(Integer.parseInt(line.split("=")[1]));
+				}
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void loadMeta() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(meta));
@@ -408,13 +453,62 @@ public class Record implements UrlProvider, UrlReceiver {
 		}
 	}
 
-	private List<String> loadList(String file) {
+	/**
+	 * 读取文件构造成List。读取最后amount个。
+	 * 
+	 * @param file
+	 * @param amount
+	 * @return
+	 */
+	private List<String> loadListFromEnd(String file, int amount) {
+		int totalAmount = lines(file);
+		int skipAmount = totalAmount - amount;
+		return loadList(file, skipAmount, amount);
+	}
+
+	private int lines(String file) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			int line = 0;
+			while (reader.readLine() != null) {
+				line++;
+			}
+			reader.close();
+			return line;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	/**
+	 * 读取文件构造成List。从开头读起，忽略掉skip个，最多读amount个。
+	 * 
+	 * @param file
+	 * @param skip
+	 * @param amount
+	 * @return
+	 */
+	private List<String> loadList(String file, int skip, int amount) {
 		List<String> crawledList = new ArrayList<>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line;
 			while ((line = reader.readLine()) != null) {
-				crawledList.add(line);
+
+				// 忽略掉开头的skip个
+				if (skip > 0) {
+					skip--;
+					continue;
+				}
+
+				// 最多加载amount个
+				if (amount > 0) {
+					crawledList.add(line);
+					amount--;
+					continue;
+				}
+				break;
 			}
 			reader.close();
 		} catch (IOException e) {
