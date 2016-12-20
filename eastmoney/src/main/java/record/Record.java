@@ -83,6 +83,7 @@ public class Record implements UrlProvider, UrlReceiver {
 			crawlingFile = logFolder + "/" + crawlingFile;
 			removedFile = logFolder + "/" + removedFile;
 			meta = logFolder + "/" + meta;
+			crawlingRecordFile = logFolder + "/" + crawlingRecordFile;
 		}
 	}
 
