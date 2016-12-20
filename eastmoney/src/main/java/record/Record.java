@@ -104,9 +104,9 @@ public class Record implements UrlProvider, UrlReceiver {
 	}
 
 	private void init() {
-		initListAndSet();
 		loadMeta();
 		loadCrawlingRecord();
+		initListAndSet();
 		logger.info("Crawling list size is " + crawlingList.size());
 		logger.info("Crawled set size is " + crawledSet.size());
 		logger.info("Page is now " + page.get());
